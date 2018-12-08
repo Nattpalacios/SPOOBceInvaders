@@ -16,7 +16,6 @@ class SPOOBceInvadersTest {
 
 	@Test
 	void deberianCrearseVivosLosCalamares() {
-		SPOOBceInvaders sp = new SPOOBceInvaders();
 		ArrayList<Extraterrestre> extraterrestres = new ArrayList<Extraterrestre>(); 
 		Extraterrestre ca = new Calamar(1000, 1000);
 		extraterrestres.add(ca);
@@ -30,7 +29,6 @@ class SPOOBceInvadersTest {
 	
 	@Test
 	void deberianCrearseVivosLosPulpos() {
-		SPOOBceInvaders sp = new SPOOBceInvaders();
 		ArrayList<Extraterrestre> extraterrestres = new ArrayList<Extraterrestre>(); 
 		Extraterrestre ca = new Pulpo(1000, 1000);
 		extraterrestres.add(ca);
@@ -44,7 +42,6 @@ class SPOOBceInvadersTest {
 	
 	@Test
 	void deberianCrearseVivosLosCangrejos() {
-		SPOOBceInvaders sp = new SPOOBceInvaders();
 		ArrayList<Extraterrestre> extraterrestres = new ArrayList<Extraterrestre>(); 
 		Extraterrestre ca = new Cangrejo(1000, 1000);
 		extraterrestres.add(ca);
@@ -58,7 +55,6 @@ class SPOOBceInvadersTest {
 	
 	@Test
 	void deberianCrearseVivosLosCanones() {
-		SPOOBceInvaders sp = new SPOOBceInvaders();
 		ArrayList<Canon> canones = new ArrayList<Canon>();
 		Canon jugador1 = new Canon(1000, 1000);
 		canones.add(jugador1);
@@ -74,7 +70,6 @@ class SPOOBceInvadersTest {
 	
 	@Test
 	void noDeberiaUnPulpoTenerMasDeUnaVida() {
-		SPOOBceInvaders sp = new SPOOBceInvaders();
 		ArrayList<Extraterrestre> extraterrestres = new ArrayList<Extraterrestre>();
 		Extraterrestre invasor1 = new Pulpo(1000, 1000);
 		extraterrestres.add(invasor1);
@@ -91,7 +86,6 @@ class SPOOBceInvadersTest {
 	
 	@Test
 	void noDeberiaUnCangrejoTenerMasDeDosVidas() {
-		SPOOBceInvaders sp = new SPOOBceInvaders();
 		ArrayList<Extraterrestre> extraterrestres = new ArrayList<Extraterrestre>();
 		Extraterrestre invasor1 = new Cangrejo(1000, 1000);
 		extraterrestres.add(invasor1);
@@ -108,7 +102,6 @@ class SPOOBceInvadersTest {
 	
 	@Test
 	void noDeberiaUnCangrejoNacerConMenosDeDosVidas() {
-		SPOOBceInvaders sp = new SPOOBceInvaders();
 		ArrayList<Extraterrestre> extraterrestres = new ArrayList<Extraterrestre>();
 		Extraterrestre invasor1 = new Cangrejo(1000, 1000);
 		extraterrestres.add(invasor1);
@@ -125,7 +118,6 @@ class SPOOBceInvadersTest {
 	
 	@Test
 	void noDeberiaUnCanonTenerMasDeTresVidas() {
-		SPOOBceInvaders sp = new SPOOBceInvaders();
 		ArrayList<Canon> canones = new ArrayList<Canon>();
 		Canon jugador = new Canon(1000, 1000);
 		canones.add(jugador);
@@ -135,7 +127,6 @@ class SPOOBceInvadersTest {
 	
 	@Test
 	void noDeberiaUnCanonCrearseConMenosDeTresVidas() {
-		SPOOBceInvaders sp = new SPOOBceInvaders();
 		ArrayList<Canon> canones = new ArrayList<Canon>();
 		Canon jugador = new Canon(1000, 1000);
 		canones.add(jugador);
@@ -144,42 +135,93 @@ class SPOOBceInvadersTest {
 	}
 	
 	@Test
+	void deberiaElCanonCrearseEnLaPosicionEspecificada() {
+		ArrayList<Canon> canones = new ArrayList<Canon>();
+		Canon jugador = new Canon(10, 80);
+		canones.add(jugador);
+		assertEquals(canones.get(0).getPosY(),80);
+		assertTrue(canones.get(0).getPosY() == 80);
+		assertTrue(canones.get(0).getPosX() == 10);
+		assertEquals(canones.get(0).getPosX(),10);
+	}
+	
+	@Test
 	void deberiaElCanonMoverseHaciaLaDerecha() {
-		
+		ArrayList<Canon> canones = new ArrayList<Canon>();
+		Canon jugador = new Canon(27, 41);
+		canones.add(jugador);
+		assertEquals(canones.get(0).getPosY(),41);
+		assertTrue(canones.get(0).getPosY() == 41);
+		assertTrue(canones.get(0).getPosX() == 27);
+		canones.get(0).derecha();
+		assertTrue(canones.get(0).getPosY() == 42);
+		assertEquals(canones.get(0).getPosY(),42);
+		assertFalse(canones.get(0).getPosY() == 41);
 	}
 	
 	@Test
 	void deberiaElCanonMoverseHaciaLaIzquierda() {
-		
+		ArrayList<Canon> canones = new ArrayList<Canon>();
+		Canon jugador = new Canon(20, 35);
+		canones.add(jugador);
+		assertTrue(canones.get(0).getPosX() == 20);
+		assertEquals(canones.get(0).getPosY(),35);
+		assertTrue(canones.get(0).getPosY() == 35);
+		canones.get(0).izquierda();
+		assertTrue(canones.get(0).getPosY() == 34);
+		assertEquals(canones.get(0).getPosY(),34);
+		assertFalse(canones.get(0).getPosY() == 35);
 	}
 	
 	@Test
 	void deberiaElCanonDisparar() {
-		
-	}
-	
-	@Test
-	void deberiaMorirUnInvasorPulpoLuegoDeUnDisparo() {
-		
-	}
-	
-	@Test
-	void deberiaMorirUnInvasorCangrejoLuegoDeDosDisparos() {
-		
+		ArrayList<Canon> canones = new ArrayList<Canon>();
+		Canon jugador = new Canon(20, 35);
+		canones.add(jugador);
+		canones.get(0).disparar(19, 36);
+		Bala balita = canones.get(0).getUltimoDisparo();
+		assertEquals(balita.getPosX(),19);
+		assertTrue(balita.getPosY() == 36);
 	}
 	
 	@Test
 	void noDeberiaCrearseMasDeUnCanonEnModoUnJugador() {
-		
+		SPOOBceInvaders sp = new SPOOBceInvaders();
+		sp.iniciarJuego('u');
+		ArrayList<Integer> tam2 = sp.getTamanos();
+		assertTrue(tam2.get(0) == 1);
+		assertFalse(tam2.get(0) > 1);
 	}
 	
 	@Test
 	void deberianCrearseDosCanonesEnModoMultijugador() {
-		
+		SPOOBceInvaders sp = new SPOOBceInvaders();
+		sp.iniciarJuego('m');
+		ArrayList<Integer> tam = sp.getTamanos();
+		assertTrue(tam.get(0) == 2);
+		assertFalse(tam.get(0) < 2);
 	}
 	
 	@Test
 	void noDeberianCrearseMasDeDosCanonesEnModoMultijugador() {
+		SPOOBceInvaders sp = new SPOOBceInvaders();
+		sp.iniciarJuego('m');
+		ArrayList<Integer> tam = sp.getTamanos();
+		assertFalse(tam.get(0) > 2);
+		assertTrue(tam.get(0) == 2);
+	}
+	
+	/**@Test
+	void deberiaMorirUnInvasorPulpoLuegoDeUnDisparo() {
+		SPOOBceInvaders sp = new SPOOBceInvaders();
+		sp.iniciarJuego('u');
+		Extraterrestre pulpo = new Pulpo(15, 35);
+		jugador.disparar(20, 36);
+		sp.actualice();
+	}*/
+	
+	@Test
+	void deberiaMorirUnInvasorCangrejoLuegoDeDosDisparos() {
 		
 	}
 

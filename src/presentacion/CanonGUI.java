@@ -4,10 +4,10 @@ import java.awt.Color;
 import java.awt.Component;
 
 public class CanonGUI extends Component{
-	private int posXCanon;
-	private int posYCanon;
-	private int posXBase;
-	private int posYBase;
+	private float posXCanon;
+	private float posYCanon;
+	private float posXBase;
+	private float posYBase;
 	private int wBase;
 	private int hBase;
 	private int wCanon;
@@ -16,17 +16,19 @@ public class CanonGUI extends Component{
 	private int puntaje;
 	private Color color;
 	private String tipoBala;
-	
+	public static final float cuadroX = 1153/84;
+	public static final float cuadroY = 838/30;
 	
 	public CanonGUI(int[] pos,Color col,int vid,int pun) {
-		posXCanon = pos[0]*10;
-		posXBase= pos[0]-2;
-		posYCanon = pos[1]+100;
-		posYBase= pos[0]+1;
-		wBase = 5;
-		wCanon = 3;
-		hBase = 1;
-		hCanon = 1;
+		posXCanon = cuadroX * 41;
+		posXBase= cuadroX * 39;
+		posYBase= cuadroY * 29;
+		posYCanon = posYBase - 30;
+		
+		wBase = 50;
+		wCanon = 30;
+		hBase = 10;
+		hCanon = 10;
 		color = col;
 		vida = vid;
 		puntaje = pun;
@@ -34,7 +36,7 @@ public class CanonGUI extends Component{
 	}
 
 
-	public int getPosXCanon() {
+	public float getPosXCanon() {
 		return posXCanon;
 	}
 
@@ -44,7 +46,7 @@ public class CanonGUI extends Component{
 	}
 
 
-	public int getPosYCanon() {
+	public float getPosYCanon() {
 		return posYCanon;
 	}
 
@@ -54,7 +56,7 @@ public class CanonGUI extends Component{
 	}
 
 
-	public int getPosXBase() {
+	public float getPosXBase() {
 		return posXBase;
 	}
 
@@ -64,7 +66,7 @@ public class CanonGUI extends Component{
 	}
 
 
-	public int getPosYBase() {
+	public float getPosYBase() {
 		return posYBase;
 	}
 

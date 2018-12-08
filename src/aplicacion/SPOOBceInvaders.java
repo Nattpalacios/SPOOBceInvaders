@@ -38,8 +38,8 @@ public class SPOOBceInvaders {
 	}
 
 	/**
-	 * Llena el tablero segun los elementos indicados
-	 * @param modo, indica el modo de juego (un jugador o multijugador)
+	 * Llena el tablero segun los elementos indicados.
+	 * @param modo, indica el modo de juego (un jugador o multijugador).
 	 */
 	public void iniciarJuego(char modo) {
 		escudos = new ArrayList<Barrera>();

@@ -55,6 +55,7 @@ public class SPOOBceInvadersGUI extends JFrame{
 		int y = pantalla.height;
 		int x = pantalla.width;
 		canvas.setSize(x * 61/100, y * 41/50);
+		System.err.println(x * 61/100 +" "+ y * 41/50);
 		centreTablero();
 		dibujante = new Printer(tablero);
 		tablero.add(dibujante);
@@ -235,11 +236,9 @@ public class SPOOBceInvadersGUI extends JFrame{
 		if(respuesta == JOptionPane.YES_OPTION) {
 			tiempoJuego.cancel();
 			menu.setVisible(true);	
-			canvas.setVisible(false);
-					
-		}else {
-			setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+			canvas.setVisible(false);	
 		}
+		canvas.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 	}
 	
 	/**

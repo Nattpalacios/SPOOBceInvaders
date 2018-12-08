@@ -34,11 +34,12 @@ public class Printer extends Component{
 		for(int i = 0; i < canones.size();i++) {
 			CanonGUI c = canones.get(i);
 			g.setColor(c.getColor());
-			g.fillRect(c.getPosXBase(), c.getPosYBase(),c.getwBase(),c.gethBase());
-			g.fillRect(c.getPosXCanon(), c.getPosYCanon(),c.getwCanon(),c.gethCanon());
+			//544
+			g.fillRect(1055, 808, 96, 28);
+			g.fillRect(572, 700, 41, 28);
 			g.setFont(new Font("Gill Sans Ultra Bold",0, 30));
 			g.drawString("Score", 30, 50);
-			g.drawString(Integer.toString(c.getPuntaje()), 40, 50);
+			g.drawString(Integer.toString(c.getPuntaje()), 150, 50);
 		}
 		
 		

@@ -31,18 +31,17 @@ public class Printer extends Component{
 	@Override
 	public void paint(Graphics g) {
 		g.drawImage(fondo, 0, 0, getWidth(), getHeight(),tablero);
-		//System.out.println("entrooooo");
-		for(int i = 0; i < barreras.size(); i++) {
-			BarreraGUI b = barreras.get(i);
-			
+		for(int i = 0; i < canones.size();i++) {
+			CanonGUI c = canones.get(i);
+			g.setColor(c.getColor());
+			g.fillRect(c.getPosXBase(), c.getPosYBase(),c.getwBase(),c.gethBase());
+			g.fillRect(c.getPosXCanon(), c.getPosYCanon(),c.getwCanon(),c.gethCanon());
+			g.setFont(new Font("Gill Sans Ultra Bold",0, 30));
+			g.drawString("Score", 30, 50);
+			g.drawString(Integer.toString(c.getPuntaje()), 40, 50);
 		}
-		//ImageIcon imgBarrera = new ImageIcon(new ImageIcon(getClass().getResource("Especial.png")).getImage());
-		//g.drawImage(imgBarrera.getImage(), 100, 300, 10, 30, null);
-		//ImageIcon imgInvasor = new ImageIcon(new ImageIcon(getClass().getResource("ImagenesCalamar/Calamar1.png")).getImage());
-		//g.drawImage(imgInvasor.getImage(), 500, 300, 70, 30, null);
-		g.setColor(Color.black);
-		g.setFont(new Font("Gill Sans Ultra Bold",0, 30));
-		g.drawString("Score", 30, 50);
+		
+		
 		g.drawString("Lives", 500, 50);
 	}
 
@@ -50,16 +49,5 @@ public class Printer extends Component{
 		this.canones = canones;
 		
 	}
-	
-	/**@Override
-	public void paint(Graphics g) {
-		for(int i = 0; i < canones.size();i++) {
-			g.fillRect(1000, 1000, 500, 500);
-		}
-		g.setColor(Color.BLUE);
-		g.drawRect(50, 80, 150, 100);
-		g.setColor(Color.MAGENTA);
-		g.fillRect(230, 80, 150, 100);
-	}*/
 	
 }

@@ -17,7 +17,6 @@ import javax.swing.event.*;
 
 public class SPOOBceInvadersGUI extends JFrame{
 	
-	private Container contentPane;
 	private MenuPrincipal menu;
 	private SPOOBceInvaders juego;
 	private JPanel tablero;
@@ -26,6 +25,7 @@ public class SPOOBceInvadersGUI extends JFrame{
 	private Image fondo = new ImageIcon(fondoo).getImage();
 	private Printer dibujante;
 	private Timer tiempoJuego;
+	private JDialog canvas;
 	
 	/**
 	 * Constructor
@@ -39,27 +39,26 @@ public class SPOOBceInvadersGUI extends JFrame{
 	 * Activa el modo Un Jugador
 	 */
 	public void empieceUnJugador() {
-		setTitle("Un Jugador");
+		canvas.setTitle("Un Jugador");
 		prepareTablero();
 		prepareAcciones();
 		prepareAccionesUnJugador();
 		juego.iniciarJuego('u');
-		this.setVisible(true);
-		tablero.setVisible(true);
+		canvas.setVisible(true);
 		iniciarJuego();
 	}
 	
 	private void prepareTablero() {
 		pantalla = Toolkit.getDefaultToolkit().getScreenSize();
 		tablero = new JPanel();
+		tablero.setLayout(new GridLayout(1, 1));
 		int y = pantalla.height;
 		int x = pantalla.width;
-		this.setSize(x * 61/100, y * 41/50);
+		canvas.setSize(x * 61/100, y * 41/50);
 		centreTablero();
 		dibujante = new Printer(tablero);
-		dibujante.setVisible(true);
 		tablero.add(dibujante);
-		this.add(tablero);
+		canvas.add(tablero);
 	}
 
 	private void iniciarJuego() {
@@ -67,9 +66,9 @@ public class SPOOBceInvadersGUI extends JFrame{
 		TimerTask task = new TimerTask() {
 			
 			public void run() {
-				char[][] tablero = juego.actualice();
-				for(int i = 0; i < tablero.length; i++) {
-					System.out.println(tablero[i]);
+				char[][] tabler = juego.actualice();
+				for(int i = 0; i < tabler.length; i++) {
+					System.out.println(tabler[i]);
 				}
 				muestreTablero();
 			}
@@ -91,21 +90,22 @@ public class SPOOBceInvadersGUI extends JFrame{
 			int vid = juego.getVidaCanon(i);
 			int pun = juego.getPuntajeCanon(i);
 			CanonGUI c = new CanonGUI(pos,col,vid,pun);
+			canones.add(c);
 		}
-		dibujante.paint(tablero.getGraphics());
+		dibujante.agregarCanones(canones);
+		dibujante.repaint();
 	}
 
 	/**
 	 * Activa el modo Multijugador de jugador vs jugador
 	 */
 	public void empieceMultijugadorJJ() {
-		this.setTitle("Jugador VS Jugador");
+		canvas.setTitle("Jugador VS Jugador");
 		prepareTablero();
 		prepareAcciones();
 		prepareAccionesMultiJJ();
 		juego.iniciarJuego('m');
-		this.setVisible(true);
-		tablero.setVisible(true);
+		canvas.setVisible(true);
 		iniciarJuego();
 	}
 	
@@ -113,21 +113,20 @@ public class SPOOBceInvadersGUI extends JFrame{
 	 * Activa el modo Multijugador de jugador vs maquina
 	 */
 	public void empieceMultijugadorJM() {
-		tablero = new JPanel();
+		canvas.setTitle("Jugador VS Maquina");
+		prepareTablero();
 		prepareAcciones();
-		prepareAccionesUnJugador();
+		prepareAccionesMultiJJ();
 		juego.iniciarJuego('m');
-		tablero.setVisible(true);
+		canvas.setVisible(true);
 		iniciarJuego();
 	}
 	
 	/**
 	 * Prepara los elementos que se van a mostrar
 	 */
-	private void prepareElementos(){	
-		contentPane = getContentPane();
-		setTitle("sPOOBceInvaders");
-		setResizable(false);
+	private void prepareElementos(){
+		canvas = new JDialog(this);
 		menu = new MenuPrincipal(this);
 	}
 	
@@ -141,7 +140,7 @@ public class SPOOBceInvadersGUI extends JFrame{
 			}
 		};
 		
-		this.addWindowListener(cerrarVentana);
+		canvas.addWindowListener(cerrarVentana);
 		
 	}
 	
@@ -164,7 +163,7 @@ public class SPOOBceInvadersGUI extends JFrame{
 			}
 		};
 		
-		this.addKeyListener(mover);
+		canvas.addKeyListener(mover);
 		
 	}
 	
@@ -224,22 +223,20 @@ public class SPOOBceInvadersGUI extends JFrame{
 			}
 		};
 		
-		this.addKeyListener(moverJ1);
-		this.addKeyListener(moverJ2);
+		canvas.addKeyListener(moverJ1);
+		canvas.addKeyListener(moverJ2);
 	}	
 	
 	/**
 	 * Da la orden de que se cierre una ventana
 	 */
 	private void salir() {
-		int respuesta = JOptionPane.showConfirmDialog(this, "Are you sure?", "Exit", JOptionPane.YES_NO_OPTION);
+		int respuesta = JOptionPane.showConfirmDialog(canvas, "Are you sure?", "Exit", JOptionPane.YES_NO_OPTION);
 		if(respuesta == JOptionPane.YES_OPTION) {
 			tiempoJuego.cancel();
-			this.setVisible(false);
-			menu.setVisible(true);
-			
-			
-			
+			menu.setVisible(true);	
+			canvas.setVisible(false);
+					
 		}else {
 			setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		}
@@ -249,9 +246,9 @@ public class SPOOBceInvadersGUI extends JFrame{
 	 * Ubica la ventana en el centro de la pantalla.
 	 */
 	private void centreTablero() {
-		int esquinaX = (pantalla.width - this.getSize().width)/2;
-		int esquinaY = (pantalla.height - this.getSize().height)/2;
-		this.setLocation(esquinaX,esquinaY);
+		int esquinaX = (pantalla.width - canvas.getSize().width)/2;
+		int esquinaY = (pantalla.height - canvas.getSize().height)/2;
+		canvas.setLocation(esquinaX,esquinaY);
 	}
 	
 	/**
@@ -259,17 +256,7 @@ public class SPOOBceInvadersGUI extends JFrame{
 	 * @param args
 	 */
 	public static void main(String[] args){
-		SPOOBceInvadersGUI invaders = new SPOOBceInvadersGUI();
-		/**Timer time = new Timer();
-		TimerTask task = new TimerTask() {
-			
-			public void run() {
-				System.out.println("bada presente");
-				
-			}
-		};		
-		time.schedule(task,1,1000);*/
-		
+		SPOOBceInvadersGUI invaders = new SPOOBceInvadersGUI();		
 	}
 	
 }

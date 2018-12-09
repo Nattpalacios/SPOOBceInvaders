@@ -13,6 +13,8 @@ public abstract class Barrera implements Impactable{
 	protected ArrayList<Integer[]> posiciones;
 	protected boolean vivo;
 	protected int vida;
+	protected int x;
+	protected int y;
 	
 	/**
 	 * Constructor de la barrera
@@ -21,6 +23,7 @@ public abstract class Barrera implements Impactable{
 	 */
 	public Barrera(int i, int j) {
 		vivo = true;
+		x = i; y = j;
 		posiciones = new ArrayList<Integer[]>();
 		asignePosiciones(i, j);
 	}
@@ -83,5 +86,7 @@ public abstract class Barrera implements Impactable{
 	public boolean isVivo() {
 		return vivo;
 	}
+	
+	
 
 }

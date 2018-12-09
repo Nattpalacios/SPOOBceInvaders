@@ -36,7 +36,11 @@ public class Calamar extends Extraterrestre{
 
 	@Override
 	public void move(SPOOBceInvaders app) {
-		// TODO Auto-generated method stub
+		if(estado == 1) {
+			estado = 2;
+		}else {
+			estado = 1;
+		}
 		
 	}
 

@@ -34,20 +34,65 @@ public class Printer extends Component{
 		for(int i = 0; i < canones.size();i++) {
 			CanonGUI c = canones.get(i);
 			g.setColor(c.getColor());
-			//544
-			g.fillRect(1055, 808, 96, 28);
-			g.fillRect(572, 700, 41, 28);
+			g.fillRect(c.getPosXBase(), c.getPosYBase(), c.getwBase(), c.gethBase());
+			g.fillRect(c.getPosXCanon(), c.getPosYCanon(), c.getwCanon(), c.gethCanon());
 			g.setFont(new Font("Gill Sans Ultra Bold",0, 30));
-			g.drawString("Score", 30, 50);
-			g.drawString(Integer.toString(c.getPuntaje()), 150, 50);
+			g.drawString("Score",30,30*(1+i));
+			g.drawString(Integer.toString(c.getPuntaje()), 150, 30*(1+i));
+			g.drawString("Lives", 500, 30*(1+i));
+			for(int j = 0; j < c.getVida(); j++) {
+				g.fillRect(650 + (50*j), 25+(25*i), 35, 10);
+				g.fillRect(660 + (50*j), 17+(25*i) , 15, 8);
+			}
 		}
-		
-		
-		g.drawString("Lives", 500, 50);
+		for(int i = 0; i < barreras.size(); i ++) {
+			BarreraGUI b = barreras.get(i);
+			String barrera = b.getImage();
+			ImageIcon image = new ImageIcon(new ImageIcon(getClass().getResource(barrera)).getImage());
+			ArrayList<Integer[]> pos = b.getPosiciones();
+			int tamX = b.getCuadrox();
+			int tamY = b.getCuadroy();
+			for(int j = 0; j < pos.size(); j++) {
+				g.drawImage(image.getImage(), pos.get(j)[0], pos.get(j)[1], tamX, tamY, null);
+			}
+		}
+		for(int i = 0; i < invasores.size(); i++) {
+			ExtraterrestreGUI e = invasores.get(i);
+			String invasor = e.getImage();
+			int[] pos = e.getPosiciones();
+			ImageIcon image = new ImageIcon(new ImageIcon(getClass().getResource(invasor)).getImage());
+			int tamX = e.getTamX();
+			int tamY = e.getTamY();
+			g.drawImage(image.getImage(), pos[0], pos[1], tamX, tamY, null);
+		}
+		for(int i = 0; i < balas.size(); i++) {
+			BalaGUI  b = balas.get(i);
+			String bala = b.getImage();
+			int[] pos = b.getPosi();
+			ImageIcon image = new ImageIcon(new ImageIcon(getClass().getResource(bala)).getImage());
+			int tamX = b.getCuadrox();
+			int tamY = b.getCuadroy();
+			g.drawImage(image.getImage(), pos[0], pos[1], tamX, tamY, null);
+		}
 	}
 
 	public void agregarCanones(ArrayList<CanonGUI> canones) {
 		this.canones = canones;
+		
+	}
+
+	public void agregarBarreras(ArrayList<BarreraGUI> barreras) {
+		this.barreras = barreras;
+		
+	}
+
+	public void agregarInvasores(ArrayList<ExtraterrestreGUI> invasores) {
+		this.invasores = invasores;
+		
+	}
+
+	public void agregarBalas(ArrayList<BalaGUI> balas) {
+		this.balas = balas;
 		
 	}
 	

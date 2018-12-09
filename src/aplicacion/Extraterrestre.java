@@ -12,8 +12,10 @@ public abstract class Extraterrestre implements Impactable, Movible, Dispara{
 	protected int vida;
 	protected int score;
 	protected ArrayList<Bala> municiones;
+	protected int estado;
 	
 	public Extraterrestre(int i, int j) {
+		estado = 1;
 		municiones = new ArrayList<Bala>();
 		vivo = true;
 		x = i; y = j;
@@ -106,4 +108,38 @@ public abstract class Extraterrestre implements Impactable, Movible, Dispara{
 		return municiones;
 	}
 
+	public int[] getPosIni() {
+		int[] pos = new int[2];
+		pos[1] = x;
+		pos[0] = y;
+		return pos;
+	}
+
+	public int getEstado() {
+		return estado;
+	}
+
+	public ArrayList<Character> getBal() {
+		ArrayList<Character> bal = new ArrayList<Character>();
+		for(int i = 0; i < municiones.size(); i++) {
+			if(municiones.get(i).getScore() == 0) {
+				bal.add(municiones.get(i).getIdentificador());
+			}
+		}
+		return bal;
+	}
+
+	public ArrayList<Integer[]> getBalPos() {
+		ArrayList<Integer[]> bal = new ArrayList<Integer[]>();
+		for(int i = 0; i < municiones.size(); i++) {
+			if(municiones.get(i).getScore() == 0) {
+				Integer[] pos = new Integer[2];
+				pos[1] = municiones.get(i).getPosX();
+				pos[0] = municiones.get(i).getPosY();
+				bal.add(pos);
+			}
+		}
+		return bal;
+	}
+	
 }

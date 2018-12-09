@@ -55,7 +55,6 @@ public class SPOOBceInvadersGUI extends JFrame{
 		int y = pantalla.height;
 		int x = pantalla.width;
 		canvas.setSize(x * 61/100, y * 41/50);
-		System.err.println(x * 61/100 +" "+ y * 41/50);
 		centreTablero();
 		dibujante = new Printer(tablero);
 		tablero.add(dibujante);
@@ -85,14 +84,40 @@ public class SPOOBceInvadersGUI extends JFrame{
 		ArrayList<BalaGUI> balas = new ArrayList<BalaGUI>();
 		ArrayList<Integer> tamanos = juego.getTamanos();
 		//construir canones
-		for(int i=0;i<tamanos.get(0);i++) {
+		for(int i = 0; i < tamanos.get(0); i++) {
 			int[]  pos = juego.getPosicionesCanon(i);
 			Color col = juego.getColorCanon(i);
 			int vid = juego.getVidaCanon(i);
 			int pun = juego.getPuntajeCanon(i);
 			CanonGUI c = new CanonGUI(pos,col,vid,pun);
+			ArrayList<Character> mun = juego.getBalasCanon(i);
+			ArrayList<Integer[]> posB = juego.getBalasCanonPos(i);
+			for(int j = 0; j < mun.size(); j++) {
+				balas.add(new BalaGUI(mun.get(j),posB.get(j)));
+			}
 			canones.add(c);
+		}//construir barreras
+		for(int i = 0; i < tamanos.get(1); i++) {
+			ArrayList<Integer[]> pos = juego.getPosicionesBarrera(i);
+			char id = juego.getIdBarrera(i);
+			BarreraGUI b = new BarreraGUI(pos,id);
+			barreras.add(b);
+		}//construir invasores
+		for(int i = 0; i < tamanos.get(2); i++) {
+			int[] pos = juego.getPosicionInvasor(i);
+			int estado = juego.getEstadoInvasor(i);
+			char id = juego.getIdInvasor(i);
+			ExtraterrestreGUI e = new ExtraterrestreGUI(pos,estado,id);
+			ArrayList<Character> mun = juego.getBalasInvasor(i);
+			ArrayList<Integer[]> posB = juego.getBalasInvasorPos(i);
+			for(int j = 0; j < mun.size(); j++) {
+				balas.add(new BalaGUI(mun.get(j),posB.get(j)));
+			}
+			invasores.add(e);
 		}
+		dibujante.agregarBalas(balas);
+		dibujante.agregarInvasores(invasores);
+		dibujante.agregarBarreras(barreras);
 		dibujante.agregarCanones(canones);
 		dibujante.repaint();
 	}

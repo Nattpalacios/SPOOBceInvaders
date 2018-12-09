@@ -60,8 +60,10 @@ public class Canon implements Impactable, Movible, Dispara{
 
 	@Override
 	public void disparar(int posX, int posY) {
-		Bala balita = new Especial(posX,posY, 'u');
-		municiones.add(balita);
+		if(vivo) {
+			Bala balita = new Normal(posX,posY, 'u');
+			municiones.add(balita);
+		}
 	}
 	
 	public int getPosX() {
@@ -126,6 +128,29 @@ public class Canon implements Impactable, Movible, Dispara{
 			}
 		}
 		return pun;
+	}
+
+	public ArrayList<Character> getBal() {
+		ArrayList<Character> bal = new ArrayList<Character>();
+		for(int i = 0; i < municiones.size(); i++) {
+			if(municiones.get(i).getScore() == 0) {
+				bal.add(municiones.get(i).getIdentificador());
+			}
+		}
+		return bal;
+	}
+	
+	public ArrayList<Integer[]> getBalPos() {
+		ArrayList<Integer[]> bal = new ArrayList<Integer[]>();
+		for(int i = 0; i < municiones.size(); i++) {
+			if(municiones.get(i).getScore() == 0) {
+				Integer[] pos = new Integer[2];
+				pos[1] = municiones.get(i).getPosX();
+				pos[0] = municiones.get(i).getPosY();
+				bal.add(pos);
+			}
+		}
+		return bal;
 	}
 
 }

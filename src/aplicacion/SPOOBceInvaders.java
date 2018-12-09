@@ -289,4 +289,40 @@ public class SPOOBceInvaders {
 		return canones.get(i).getPuntaje();
 	}
 	
+	public ArrayList<Integer[]> getPosicionesBarrera(int i) {
+		return escudos.get(i).getPos();
+	}
+
+	public char getIdBarrera(int i) {
+		return escudos.get(i).getIdentificador();
+	}
+
+	public int[] getPosicionInvasor(int i) {
+		return extraterrestres.get(i).getPosIni();
+	}
+
+	public int getEstadoInvasor(int i) {
+		return extraterrestres.get(i).getEstado();
+	}
+
+	public char getIdInvasor(int i) {
+		return extraterrestres.get(i).getIdentificador();
+	}
+	
+	public ArrayList<Character> getBalasCanon(int i) {
+		return canones.get(i).getBal();
+	}
+	
+	public ArrayList<Integer[]> getBalasCanonPos(int i){
+		return canones.get(i).getBalPos();
+	}
+	
+	public ArrayList<Character> getBalasInvasor(int i) {
+		return extraterrestres.get(i).getBal();
+	}
+	
+	public ArrayList<Integer[]> getBalasInvasorPos(int i){
+		return extraterrestres.get(i).getBalPos();
+	}
+	
 }

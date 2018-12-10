@@ -78,7 +78,7 @@ public class SPOOBceInvadersGUI extends JFrame{
 		prepareAcciones();
 		prepareAccionesMultiJJ();
 		ArrayList<ArrayList<Character>> a = guardar.interpretaTablero(tablero);
-		juego.iniciarJuego('m',col,col2,a);;
+		juego.iniciarJuego('m',col,col2,a);
 		canvas.setVisible(true);
 		iniciarJuego();
 	}

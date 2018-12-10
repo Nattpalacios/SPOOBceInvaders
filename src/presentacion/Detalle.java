@@ -271,6 +271,9 @@ public class Detalle extends JDialog{
 			if(tipo == 'u') {
 				this.setVisible(false);
 				principal.empieceUnJugador(col1, f);
+			}else if(tipo == 'm') {
+				this.setVisible(false);
+				principal.empieceMultijugadorJJ(col1, col2, f);
 			}
 		}
 		
@@ -282,6 +285,9 @@ public class Detalle extends JDialog{
 		if(tipo == 'u') {
 			this.setVisible(false);
 			principal.empieceUnJugador(col1, f);
+		}else if(tipo == 'm') {
+			this.setVisible(false);
+			principal.empieceMultijugadorJJ(col1, col2, f);
 		}
 		
 	}

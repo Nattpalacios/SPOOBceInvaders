@@ -7,6 +7,11 @@ import java.awt.event.*;
 import java.net.URL;
 import javax.swing.event.*;
 
+/**
+ * @version (9/12/2018)
+ * @author (Natalia Palacios)
+ */
+
 public class Multijugador extends JDialog{
 	
 	private Container contentPane;
@@ -16,13 +21,12 @@ public class Multijugador extends JDialog{
 	private JButton ia;
 	private JButton jugador2;
 	private JButton volver;
-	private JugadorVsMaquina opcionIA;
-	private JugadorVsJugador opcionOtroJugador;
 	private Color colorFuente = Color.BLACK;
 	private Color colorBoton = new Color(232, 232, 232);
 	private URL fondoo = this.getClass().getResource("MenuJugar.png");
 	private Image fondo = new ImageIcon(fondoo).getImage();
 	private SPOOBceInvadersGUI principal;
+	private Detalle detalle;
 	
 	/**
 	 * Inicia la ventana del menu inicial.
@@ -191,8 +195,8 @@ public class Multijugador extends JDialog{
 	 * Abre una ventana con las instrucciones
 	 */
 	private void jugador() {
-		opcionOtroJugador = new JugadorVsJugador(this);
-		principal.empieceMultijugadorJJ();
+		detalle = new Detalle(juego,'m');
+		//principal.empieceMultijugadorJJ();
 		this.setVisible(false);
 	}
 	
@@ -200,8 +204,8 @@ public class Multijugador extends JDialog{
 	 * Abre una ventanas con otras opciones.
 	 */
 	private void maquina() {
-		opcionIA = new JugadorVsMaquina(this);
-		principal.empieceMultijugadorJM();
+		detalle = new Detalle(juego,'m');
+		//principal.empieceMultijugadorJM();
 		this.setVisible(false);
 	}
 	

@@ -90,10 +90,12 @@ public class SPOOBceInvaders {
 	 */
 	private void actualiceCanones() {
 		for(int i = 0; i < canones.size(); i++) {
-			char id = canones.get(i).getIdentificador();
-			int[][] pos = canones.get(i).getPos();
-			for(int j = 0; j < pos.length; j++) {
-				tablero[pos[j][0]][pos[j][1]] = id;
+			if(canones.get(i).isVivo()) {
+				char id = canones.get(i).getIdentificador();
+				int[][] pos = canones.get(i).getPos();
+				for(int j = 0; j < pos.length; j++) {
+					tablero[pos[j][0]][pos[j][1]] = id;
+				}
 			}
 		}
 	}
@@ -253,9 +255,9 @@ public class SPOOBceInvaders {
 				can=i;
 			}
 		}
-		if(ext!=-1) {extraterrestres.remove(ext);}
+		//if(ext!=-1) {extraterrestres.remove(ext);}
 		if(bar!=-1) {escudos.remove(bar);}
-		if(can!=-1) {canones.remove(can);}
+		//if(can!=-1) {canones.remove(can);}
 		
 		return score;
 	}
@@ -323,6 +325,10 @@ public class SPOOBceInvaders {
 	
 	public ArrayList<Integer[]> getBalasInvasorPos(int i){
 		return extraterrestres.get(i).getBalPos();
+	}
+	
+	public boolean invasorIsVivo(int i) {
+		return extraterrestres.get(i).isVivo();
 	}
 	
 }

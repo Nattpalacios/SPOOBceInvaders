@@ -14,12 +14,13 @@ public class Cangrejo extends Extraterrestre{
 
 	@Override
 	public void move(SPOOBceInvaders app) {
-		if(estado == 1) {
-			estado = 2;
-		}else {
-			estado = 1;
+		if(vivo) {
+			if(estado == 1) {
+				estado = 2;
+			}else {
+				estado = 1;
+			}
 		}
-		
 	}
 
 }

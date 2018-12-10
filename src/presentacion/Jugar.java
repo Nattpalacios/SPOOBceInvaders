@@ -7,7 +7,10 @@ import java.awt.event.*;
 import java.net.URL;
 import javax.swing.event.*;
 
-import aplicacion.SPOOBceInvaders;
+/**
+ * @version (9/12/2018)
+ * @author (Natalia Palacios)
+ */
 
 public class Jugar extends JDialog{
 	
@@ -17,7 +20,6 @@ public class Jugar extends JDialog{
 	private JPanel botones;
 	private JButton unJugador;
 	private JButton multijugador;
-	private UnJugador opcionUnJugador;
 	private Multijugador opcionMultijugador;
 	private JButton volver;
 	private Color colorFuente = Color.BLACK;
@@ -25,6 +27,7 @@ public class Jugar extends JDialog{
 	private URL fondoo = this.getClass().getResource("MenuJugar.png");
 	private Image fondo = new ImageIcon(fondoo).getImage();
 	private SPOOBceInvadersGUI principal;
+	private Detalle detalle;
 	
 	/**
 	 * Inicia la ventana del menu inicial.
@@ -193,8 +196,8 @@ public class Jugar extends JDialog{
 	 * Abre una ventana con las instrucciones
 	 */
 	private void unJugador() {
-		opcionUnJugador = new UnJugador(this);
-		principal.empieceUnJugador();
+		detalle = new Detalle(this,'u');
+		//principal.empieceUnJugador();
 		this.setVisible(false);
 	}
 	
@@ -215,13 +218,8 @@ public class Jugar extends JDialog{
 	 * Cierra el juego en caso de que el usuario lo indique.
 	 */
 	private void salir() {
-		int respuesta = JOptionPane.showConfirmDialog(this, "Are you sure?", "Exit", JOptionPane.YES_NO_OPTION);
-		if(respuesta == JOptionPane.YES_OPTION) {
-			menuP.setVisible(true);
-			this.setVisible(false);
-		}else {
-			setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-		}
+		menuP.setVisible(true);
+		this.setVisible(false);
 	}
 
 }

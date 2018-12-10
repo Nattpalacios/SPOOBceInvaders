@@ -34,8 +34,10 @@ public class Printer extends Component{
 		for(int i = 0; i < canones.size();i++) {
 			CanonGUI c = canones.get(i);
 			g.setColor(c.getColor());
-			g.fillRect(c.getPosXBase(), c.getPosYBase(), c.getwBase(), c.gethBase());
-			g.fillRect(c.getPosXCanon(), c.getPosYCanon(), c.getwCanon(), c.gethCanon());
+			if(canones.get(i).getVida() > 0) {
+				g.fillRect(c.getPosXBase(), c.getPosYBase(), c.getwBase(), c.gethBase());
+				g.fillRect(c.getPosXCanon(), c.getPosYCanon(), c.getwCanon(), c.gethCanon());
+			}
 			g.setFont(new Font("Gill Sans Ultra Bold",0, 30));
 			g.drawString("Score",30,30*(1+i));
 			g.drawString(Integer.toString(c.getPuntaje()), 150, 30*(1+i));
@@ -53,6 +55,7 @@ public class Printer extends Component{
 			int tamX = b.getCuadrox();
 			int tamY = b.getCuadroy();
 			for(int j = 0; j < pos.size(); j++) {
+				
 				g.drawImage(image.getImage(), pos.get(j)[0], pos.get(j)[1], tamX, tamY, null);
 			}
 		}
@@ -63,7 +66,9 @@ public class Printer extends Component{
 			ImageIcon image = new ImageIcon(new ImageIcon(getClass().getResource(invasor)).getImage());
 			int tamX = e.getTamX();
 			int tamY = e.getTamY();
-			g.drawImage(image.getImage(), pos[0], pos[1], tamX, tamY, null);
+			if(invasores.get(i).isVivo()) {
+				g.drawImage(image.getImage(), pos[0], pos[1], tamX, tamY, null);
+			}
 		}
 		for(int i = 0; i < balas.size(); i++) {
 			BalaGUI  b = balas.get(i);

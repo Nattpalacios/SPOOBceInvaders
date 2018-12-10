@@ -11,7 +11,7 @@ import java.net.URL;
 import javax.swing.event.*;
 
 /**
- * @version (29/11/2018)
+ * @version (9/12/2018)
  * @author (Natalia Palacios)
  */
 
@@ -73,8 +73,7 @@ public class SPOOBceInvadersGUI extends JFrame{
 				muestreTablero();
 			}
 		};		
-		tiempoJuego.schedule(task,1,200);
-		
+		tiempoJuego.schedule(task,1,100);
 	}
 
 	private void muestreTablero() {
@@ -107,7 +106,8 @@ public class SPOOBceInvadersGUI extends JFrame{
 			int[] pos = juego.getPosicionInvasor(i);
 			int estado = juego.getEstadoInvasor(i);
 			char id = juego.getIdInvasor(i);
-			ExtraterrestreGUI e = new ExtraterrestreGUI(pos,estado,id);
+			boolean vivo = juego.invasorIsVivo(i);
+			ExtraterrestreGUI e = new ExtraterrestreGUI(pos,estado,id,vivo);
 			ArrayList<Character> mun = juego.getBalasInvasor(i);
 			ArrayList<Integer[]> posB = juego.getBalasInvasorPos(i);
 			for(int j = 0; j < mun.size(); j++) {

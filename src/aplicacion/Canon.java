@@ -45,16 +45,20 @@ public class Canon implements Impactable, Movible, Dispara{
 	}
 	
 	public void izquierda() {
-		if(y-3 >= 0) {
-			y--;
-			asignePosiciones(x, y);
+		if(vivo) {
+			if(y-3 >= 0) {
+				y--;
+				asignePosiciones(x, y);
+			}
 		}
 	}
 
 	public void derecha() {
-		if(y+5 <= 83) {
-			y++;
-			asignePosiciones(x, y);
+		if(vivo) {
+			if(y+5 <= 83) {
+				y++;
+				asignePosiciones(x, y);
+			}
 		}
 	}
 
@@ -92,9 +96,11 @@ public class Canon implements Impactable, Movible, Dispara{
 
 	public boolean estoy(int i, int j, char d) {
 		boolean flag = false;
-		for(int k = 0; k < posiciones.length && !flag; k++) {
-			if(posiciones[k][0] == i && posiciones[k][1] == j) {
-				flag = true;
+		if(vivo) {
+			for(int k = 0; k < posiciones.length && !flag; k++) {
+				if(posiciones[k][0] == i && posiciones[k][1] == j) {
+					flag = true;
+				}
 			}
 		}
 		return flag;

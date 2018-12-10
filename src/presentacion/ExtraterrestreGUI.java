@@ -8,8 +8,10 @@ public class ExtraterrestreGUI {
 	private int tamY;
 	private int[] posiciones;
 	private String image;
+	private boolean vivo;
 
-	public ExtraterrestreGUI(int[] pos, int estado, char id) {
+	public ExtraterrestreGUI(int[] pos, int estado, char id, boolean vivo) {
+		this.vivo = vivo;
 		posiciones = new int[2];
 		posiciones[0] = pos[0] * cuadroX;
 		posiciones[1] = pos[1] * cuadroY;
@@ -57,6 +59,8 @@ public class ExtraterrestreGUI {
 		this.image = image;
 	}
 
-	
+	public boolean isVivo() {
+		return vivo;
+	}
 	
 }

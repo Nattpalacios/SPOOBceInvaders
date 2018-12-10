@@ -43,16 +43,18 @@ public abstract class Extraterrestre implements Impactable, Movible, Dispara{
 	
 	@Override
 	public void disparar(int posX, int posY) {
-		Random r = new Random();
-		boolean prob;
-		int val = Math.abs(r.nextInt(1000));		
-		if(val <= 5) {
-			prob = true;
-		}else {
-			prob = false;
-		}
-		if(prob) {
-			dispare();
+		if(vivo) {
+			Random r = new Random();
+			boolean prob;
+			int val = Math.abs(r.nextInt(1000));		
+			if(val <= 5) {
+				prob = true;
+			}else {
+				prob = false;
+			}
+			if(prob) {
+				dispare();
+			}
 		}
 	}	
 	
@@ -68,9 +70,11 @@ public abstract class Extraterrestre implements Impactable, Movible, Dispara{
 
 	public boolean estoy(int i, int j, char d) {
 		boolean flag = false;
-		for(int k = 0; k < posiciones.length && !flag; k++) {
-			if(posiciones[k][0] == i && posiciones[k][1] == j) {
-				flag = true;
+		if(vivo) {
+			for(int k = 0; k < posiciones.length && !flag; k++) {
+				if(posiciones[k][0] == i && posiciones[k][1] == j) {
+					flag = true;
+				}
 			}
 		}
 		return flag;

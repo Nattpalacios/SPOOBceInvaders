@@ -167,13 +167,18 @@ public class SPOOBceInvaders {
 	}
 	
 	public void crearElementos(ArrayList<ArrayList<Character>> tablero) {
-		int[] barre = {21,7,21,28,21,49,21,70};
-		//int[] barre = posicionesBarreras(tablero.get(1).size());
+		int[] barre = posicionesBarreras(tablero.get(1).size());
+		int cont = 0;
 		int[] calamar = {5,10,5,16,5,22,5,28,5,34,5,40,5,46,5,52,5,58,5,64,5,70};	
 		int[] cangrejo = {8,10,8,16,8,22,8,28,8,34,8,40,8,46,8,52,8,58,8,64,8,70};
 		int[] pulpo = {11,10,11,16,11,22,11,28,11,34,11,40,11,46,11,52,11,58,11,64,11,70};
-		for(int i = 0; i < 7; i+=2) {
-			escudos.add(new Roja(barre[i],barre[i+1]));
+		for(int i = 0; i < barre.length-1; i+=2) {
+			if(tablero.get(1).get(cont) == 'r') {
+				escudos.add(new Roja(barre[i],barre[i+1]));
+			}else {
+				escudos.add(new Verde(barre[i],barre[i+1]));
+			}
+			cont++;
 		}
 		for(int i = 0; i < 21; i+=2) {
 			extraterrestres.add(new Calamar(calamar[i],calamar[i+1]));
@@ -183,7 +188,28 @@ public class SPOOBceInvaders {
 	}
 	
 	private int[] posicionesBarreras(int cantidad) {
+		int[] barre;
+		if(cantidad == 1) {
+			barre = {//llenalo};
+		}else if(cantidad == 2) {
+			barre = {//llenalo};
+		}
+		else if(cantidad == 3) {
+			barre = {//llenalo};
+		}else if(cantidad == 4) {
+			barre = {21,7,21,28,21,49,21,70};
+		}else if(cantidad == 4) {
+			barre = {//llenalo};
+		}else if(cantidad == 4) {
+			barre = {//llenalo};
+		}else if(cantidad == 4) {
+			barre = {//llenalo};
+		}else {
+			barre = {//llenalo};
+		}
 		
+		
+		return barre;
 	}
 	
 	/**

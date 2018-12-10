@@ -197,27 +197,31 @@ public class SPOOBceInvaders {
 	}
 	
 	private int[] posicionesBarreras(int cantidad) {
-		/*if(cantidad == 1) {
-			barre = {//llenalo};
+		if(cantidad == 1) {
+			int[] barre = {21,38};
+			return barre;
 		}else if(cantidad == 2) {
-			barre = {//llenalo};
-		}
-		else if(cantidad == 3) {
-			barre = {//llenalo};
+			int[] barre = {21,22,21,53};
+			return barre;
+		}else if(cantidad == 3) {
+			int[] barre = {21,14,21,37,21,60};
+			return barre;
 		}else if(cantidad == 4) {
-			barre = {21,7,21,28,21,49,21,70};
-		}else if(cantidad == 4) {
-			barre = {//llenalo};
-		}else if(cantidad == 4) {
-			barre = {//llenalo};
-		}else if(cantidad == 4) {
-			barre = {//llenalo};
+			int[] barre = {21,7,21,28,21,49,21,70};
+			return barre;
+		}else if(cantidad == 5) {
+			int[] barre = {21,9,21,24,21,39,21,54,21,69};
+			return barre;
+		}else if(cantidad == 6) {
+			int[] barre = {21,7,21,20,21,33,21,46,21,59,21,72};
+			return barre;
+		}else if(cantidad == 7) {
+			int[] barre = {21,4,21,16,21,28,21,40,21,52,21,64,21,76};
+			return barre;
 		}else {
-			barre = {//llenalo};
-		}*/
-		int[] barre = {21,7,21,28,21,49,21,70};
-		
-		return barre;
+			int[] barre = {21,0,21,10,21,21,21,32,21,43,21,54,21,65,21,75};
+			return barre;
+		}
 	}
 	
 	/**

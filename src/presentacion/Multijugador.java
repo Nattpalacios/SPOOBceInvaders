@@ -218,13 +218,8 @@ public class Multijugador extends JDialog{
 	 * Cierra el juego en caso de que el usuario lo indique.
 	 */
 	private void salir() {
-		int respuesta = JOptionPane.showConfirmDialog(this, "Are you sure?", "Exit", JOptionPane.YES_NO_OPTION);
-		if(respuesta == JOptionPane.YES_OPTION) {
-			juego.setVisible(true);
-			this.setVisible(false);
-		}else {
-			setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-		}
+		juego.setVisible(true);
+		this.setVisible(false);
 	}
 
 }

@@ -1,6 +1,7 @@
 Lineas de Invasores: 1
 Pulpo
-Numero de Barreras: 4
+Numero de Barreras: 5
+Roja
 Roja
 Roja
 Roja

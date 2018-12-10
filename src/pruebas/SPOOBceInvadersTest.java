@@ -184,7 +184,7 @@ class SPOOBceInvadersTest {
 		assertTrue(balita.getPosY() == 36);
 	}
 	
-	@Test
+	/**@Test
 	void noDeberiaCrearseMasDeUnCanonEnModoUnJugador() {
 		SPOOBceInvaders sp = new SPOOBceInvaders();
 		sp.iniciarJuego('u');
@@ -209,7 +209,7 @@ class SPOOBceInvadersTest {
 		ArrayList<Integer> tam = sp.getTamanos();
 		assertFalse(tam.get(0) > 2);
 		assertTrue(tam.get(0) == 2);
-	}
+	}*/
 	
 	/**@Test
 	void deberiaMorirUnInvasorPulpoLuegoDeUnDisparo() {

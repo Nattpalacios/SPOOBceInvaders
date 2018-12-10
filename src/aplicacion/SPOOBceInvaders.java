@@ -41,18 +41,45 @@ public class SPOOBceInvaders {
 	 * Llena el tablero segun los elementos indicados.
 	 * @param modo, indica el modo de juego (un jugador o multijugador).
 	 */
-	public void iniciarJuego(char modo) {
+	public void iniciarJuego(Color col, ArrayList<ArrayList<Character>> tablero) {
 		escudos = new ArrayList<Barrera>();
 		extraterrestres = new ArrayList<Extraterrestre>();
 		canones = new ArrayList<Canon>();
-		if(modo == 'u') {
-			canones.add(new Canon(27,41));
-		}else if(modo == 'm') {
-			canones.add(new Canon(27,26));
-			canones.add(new Canon(27,55));
-		}
+		Canon c = new Canon(27,41);
+		c.setColor(col);
+		canones.add(c);
 		limpiarTablero();
-		crearElementos();
+		crearElementos(); //arreglar
+		actualiceInvasores();
+		actualiceBarreras();
+		actualiceCanones();
+		
+	}
+	
+	/**
+	 * Llena el tablero segun los elementos indicados.
+	 * @param modo, indica el modo de juego (un jugador o multijugador).
+	 */
+	public void iniciarJuego(char modo,Color col,Color col2,ArrayList<ArrayList<Character>> tablero) {
+		escudos = new ArrayList<Barrera>();
+		extraterrestres = new ArrayList<Extraterrestre>();
+		canones = new ArrayList<Canon>();
+		/*if(modo == 'm') {
+			Canon c = new Canon(27,55);
+			c.setColor(col);
+			Canon c2 = new Canon(27,26);
+			c2.setColor(col2);
+		}else if(modo == 'm') {
+			
+		}*/
+		Canon c = new Canon(27,55);
+		c.setColor(col);
+		Canon c2 = new Canon(27,26);
+		c2.setColor(col2);
+		canones.add(c);
+		canones.add(c2);
+		limpiarTablero();
+		crearElementos();//arreglar
 		actualiceInvasores();
 		actualiceBarreras();
 		actualiceCanones();
@@ -279,8 +306,7 @@ public class SPOOBceInvaders {
 	}
 
 	public Color getColorCanon(int i) {
-		//return canones.get(i).getColor();
-		return Color.BLACK;
+		return canones.get(i).getColor();
 	}
 
 	public int getVidaCanon(int i) {

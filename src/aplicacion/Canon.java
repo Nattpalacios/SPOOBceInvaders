@@ -1,5 +1,6 @@
 package aplicacion;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -11,6 +12,7 @@ public class Canon implements Impactable, Movible, Dispara{
 	private ArrayList<Bala> municiones;
 	private int vida;
 	private boolean vivo;
+	private Color color;
 	
 	public Canon(int i, int j) {
 		vivo = true;
@@ -157,6 +159,15 @@ public class Canon implements Impactable, Movible, Dispara{
 			}
 		}
 		return bal;
+	}
+
+	public void setColor(Color col) {
+		this.color = col;
+		
+	}
+
+	public Color getColor() {
+		return color;
 	}
 
 }

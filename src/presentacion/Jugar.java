@@ -196,7 +196,7 @@ public class Jugar extends JDialog{
 	 * Abre una ventana con las instrucciones
 	 */
 	private void unJugador() {
-		detalle = new Detalle(this,'u');
+		detalle = new Detalle(this,'u',principal);
 		//principal.empieceUnJugador();
 		this.setVisible(false);
 	}

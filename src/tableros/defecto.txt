@@ -1,10 +1,10 @@
-Lineas de invasores: 5
+Lineas de Invasores: 5
 Calamar
 Cangrejo
 Cangrejo
 Pulpo
 Pulpo
-Barreras: 4
+Numero de Barreras: 4
 Roja
 Verde
 Roja

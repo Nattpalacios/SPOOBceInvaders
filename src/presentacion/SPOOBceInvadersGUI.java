@@ -7,6 +7,7 @@ import java.util.Timer;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import javax.swing.event.*;
 
@@ -26,24 +27,58 @@ public class SPOOBceInvadersGUI extends JFrame{
 	private Printer dibujante;
 	private Timer tiempoJuego;
 	private JDialog canvas;
+	private Persistencia guardar;
 	
 	/**
 	 * Constructor
 	 */
 	private SPOOBceInvadersGUI(){
+		guardar = new Persistencia();
 		juego = new SPOOBceInvaders();
 		prepareElementos();		
 	}
 	
 	/**
 	 * Activa el modo Un Jugador
+	 * @throws IOException 
 	 */
-	public void empieceUnJugador() {
+	public void empieceUnJugador(Color col,File tablero) throws IOException {
 		canvas.setTitle("Un Jugador");
 		prepareTablero();
 		prepareAcciones();
 		prepareAccionesUnJugador();
-		juego.iniciarJuego('u');
+		ArrayList<ArrayList<Character>> a = guardar.interpretaTablero(tablero);
+		juego.iniciarJuego(col,a);
+		canvas.setVisible(true);
+		iniciarJuego();
+	}
+	
+	/**
+	 * Activa el modo Multijugador de jugador vs jugador
+	 * @throws IOException 
+	 */
+	public void empieceMultijugadorJJ(Color col,Color col2,File tablero) throws IOException {
+		canvas.setTitle("Jugador VS Jugador");
+		prepareTablero();
+		prepareAcciones();
+		prepareAccionesMultiJJ();
+		ArrayList<ArrayList<Character>> a = guardar.interpretaTablero(tablero);
+		juego.iniciarJuego('m',col,col2,a);
+		canvas.setVisible(true);
+		iniciarJuego();
+	}
+	
+	/**
+	 * Activa el modo Multijugador de jugador vs maquina
+	 * @throws IOException 
+	 */
+	public void empieceMultijugadorJM(Color col,Color col2,File tablero,char modo) throws IOException {
+		canvas.setTitle("Jugador VS Maquina");
+		prepareTablero();
+		prepareAcciones();
+		prepareAccionesMultiJJ();
+		ArrayList<ArrayList<Character>> a = guardar.interpretaTablero(tablero);
+		juego.iniciarJuego('m',col,col2,a);;
 		canvas.setVisible(true);
 		iniciarJuego();
 	}
@@ -122,31 +157,7 @@ public class SPOOBceInvadersGUI extends JFrame{
 		dibujante.repaint();
 	}
 
-	/**
-	 * Activa el modo Multijugador de jugador vs jugador
-	 */
-	public void empieceMultijugadorJJ() {
-		canvas.setTitle("Jugador VS Jugador");
-		prepareTablero();
-		prepareAcciones();
-		prepareAccionesMultiJJ();
-		juego.iniciarJuego('m');
-		canvas.setVisible(true);
-		iniciarJuego();
-	}
 	
-	/**
-	 * Activa el modo Multijugador de jugador vs maquina
-	 */
-	public void empieceMultijugadorJM() {
-		canvas.setTitle("Jugador VS Maquina");
-		prepareTablero();
-		prepareAcciones();
-		prepareAccionesMultiJJ();
-		juego.iniciarJuego('m');
-		canvas.setVisible(true);
-		iniciarJuego();
-	}
 	
 	/**
 	 * Prepara los elementos que se van a mostrar

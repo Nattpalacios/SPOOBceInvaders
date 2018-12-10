@@ -9,7 +9,7 @@ public class Platillo extends Extraterrestre{
 	}
 	
 	public char getIdentificador() {
-		return 'v';
+		return 't';
 	}
 
 	@Override

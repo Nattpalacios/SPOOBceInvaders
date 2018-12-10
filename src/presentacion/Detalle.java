@@ -2,9 +2,12 @@ package presentacion;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 import javax.swing.*;
+import javax.swing.plaf.FileChooserUI;
 
 /**
  * @version (9/12/2018)
@@ -28,8 +31,10 @@ public class Detalle extends JDialog{
 	private Color colorFuente = Color.BLACK;
 	private Color colorBoton = new Color(232, 232, 232);
 	private char tipo;
+	private SPOOBceInvadersGUI principal;
 
-	public Detalle(Jugar jugar, char tipo) {
+	public Detalle(Jugar jugar, char tipo,SPOOBceInvadersGUI gui) {
+		principal = gui;
 		this.tipo = tipo;
 		this.jugar = jugar;
 		contentPane = getContentPane();
@@ -225,14 +230,24 @@ public class Detalle extends JDialog{
 		
 		ActionListener porDefecto = new ActionListener() {
 			public void actionPerformed(ActionEvent i) {
-				cambieColor2();
+				try {
+					defecto();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
 			}
 		};
 		
 		ActionListener personalizad = new ActionListener() {
 			public void actionPerformed(ActionEvent i) {
-				cambieColor2();
+				try {
+					personal();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
 			}
 		};
@@ -246,6 +261,31 @@ public class Detalle extends JDialog{
 		personalizado.addActionListener(personalizad);
 	}
 	
+	protected void personal() throws IOException {
+		File f = null;
+		JFileChooser j = new JFileChooser();
+		j.setDialogTitle("Escoja su tablero");
+		int selection = j.showSaveDialog(this);
+		if(JFileChooser.APPROVE_OPTION == selection) {
+			f = j.getSelectedFile();
+			if(tipo == 'u') {
+				this.setVisible(false);
+				principal.empieceUnJugador(col1, f);
+			}
+		}
+		
+		
+	}
+
+	protected void defecto() throws IOException {
+		File f = new File("src/tableros/defecto.txt");
+		if(tipo == 'u') {
+			this.setVisible(false);
+			principal.empieceUnJugador(col1, f);
+		}
+		
+	}
+
 	private void cambieColor1() {
 		Color coloor = JColorChooser.showDialog(null, "Change color", col1);
 		if(coloor != null && coloor != Color.BLACK) {

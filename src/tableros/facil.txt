@@ -1,0 +1,7 @@
+Lineas de Invasores: 1
+Pulpo
+Numero de Barreras: 4
+Roja
+Roja
+Roja
+Roja

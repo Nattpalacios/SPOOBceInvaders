@@ -6,8 +6,9 @@ import java.util.Arrays;
 /**
  * Clase que contiene toda la informacion de las barreras
  * @author (Palacios)
- * @version (30/11/2018)
+ * @version (9/12/2018)
  */
+
 public abstract class Barrera implements Impactable{
 	
 	protected ArrayList<Integer[]> posiciones;
@@ -81,8 +82,18 @@ public abstract class Barrera implements Impactable{
 		pos[1] = j+7; posiciones.add(Arrays.copyOfRange(pos, 0, 2));
 	}
 	
+	/**
+	 * Indica si la barrera esta en el lugar del impacto de la bala.
+	 * @param i, posicion en x del impacto.
+	 * @param j, posicion en y del impacto.
+	 * @param d, direccion en que va la bala.
+	 */
 	public abstract boolean estoy(int i, int j, char d);
 	
+	/**
+	 * Indica si la barrera aun existe.
+	 * @return si esta viva.
+	 */
 	public boolean isVivo() {
 		return vivo;
 	}

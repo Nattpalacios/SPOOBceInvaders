@@ -8,8 +8,9 @@ import java.net.URL;
 import javax.swing.event.*;
 
 /**
+ * Esta clase permite mostrar las opciones de juego.
+ * @author Palacios
  * @version (9/12/2018)
- * @author (Natalia Palacios)
  */
 
 public class Jugar extends JDialog{
@@ -30,8 +31,9 @@ public class Jugar extends JDialog{
 	private Detalle detalle;
 	
 	/**
-	 * Inicia la ventana del menu inicial.
+	 * Inicia la ventana del menu de juego.
 	 * @param gui. Tablero de juego.
+	 * @param menu. Ventana de menu principal.
 	 */
 	public Jugar(MenuPrincipal menu, SPOOBceInvadersGUI gui) {
 		principal = gui;
@@ -55,7 +57,7 @@ public class Jugar extends JDialog{
 	
 	
 	/**
-	 * Prepara y ajusta los botones a mostrar en el menu principal.
+	 * Prepara y ajusta los botones a mostrar en el menu de juego.
 	 */
 	private void prepareElementosMenu() {
 		botones = new JPanel() {
@@ -104,7 +106,7 @@ public class Jugar extends JDialog{
 	}
 
 	/**
-	 * Ajusta el tamano de la ventana del menu principal.
+	 * Ajusta el tamano de la ventana del menu de juego.
 	 */
 	private void tamanoMenu() {
 		int y = pantalla.height;
@@ -135,7 +137,7 @@ public class Jugar extends JDialog{
 	}
 	
 	/**
-	 * Asigna el color a los botones del menu
+	 * Asigna el color a los botones del menu.
 	 */
 	private void colorcitoBoton() {
 		unJugador.setBackground(colorBoton);
@@ -197,7 +199,6 @@ public class Jugar extends JDialog{
 	 */
 	private void unJugador() {
 		detalle = new Detalle(this,'u',principal);
-		//principal.empieceUnJugador();
 		this.setVisible(false);
 	}
 	
@@ -209,13 +210,16 @@ public class Jugar extends JDialog{
 		this.setVisible(false);
 	}
 	
+	/**
+	 * Permite volver al menu principal.
+	 */
 	private void volver() {
 		menuP.setVisible(true);
 		this.setVisible(false);
 	}
 	
 	/**
-	 * Cierra el juego en caso de que el usuario lo indique.
+	 * Cierra el menu en caso de que el usuario lo indique.
 	 */
 	private void salir() {
 		menuP.setVisible(true);

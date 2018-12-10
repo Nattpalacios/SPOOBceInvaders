@@ -3,7 +3,7 @@ package aplicacion;
 /**
  * Esta clase contiene toda la informacion necesaria de una bala
  * @author (Palacios)
- * @version (29/11/2018)
+ * @version (9/12/2018)
  */
 public abstract class Bala implements Movible{
 	
@@ -26,26 +26,32 @@ public abstract class Bala implements Movible{
 		
 	}
 	
+	/**
+	 * Retorna el identificador de la bala segun el tipo. 
+	 * @return el identificador.
+	 */
 	public abstract char getIdentificador();
 	
 	/**
-	 * Indica la posicion en x de la bala
-	 * @return la posicion en x de la bala
+	 * Indica la posicion en x de la bala.
+	 * @return la posicion en x de la bala.
 	 */
 	public int getPosX() {
 		return posX;
 	}
 	
 	/**
-	 * Indica la posicion en y de la bala
-	 * @return la posicion en y de la bala
+	 * Indica la posicion en y de la bala.
+	 * @return la posicion en y de la bala.
 	 */
 	public int getPosY() {
 		return posY;
 	}
 
-
-
+	/**
+	 * Retorna el puntaje adquirido por la bala.
+	 * @return el puntaje.
+	 */
 	public int getScore() {		
 		return score;
 	}

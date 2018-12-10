@@ -1,7 +1,20 @@
 package aplicacion;
 
+/**
+ * Esta clase contiene toda la informacion necesaria de una bala.
+ * Esta bala solo impacta a un invasor a la vez.
+ * @author (Palacios)
+ * @version (9/12/2018)
+ */
+
 public class Normal extends Bala{
 
+	/**
+	 * Constructor de la bala
+	 * @param i, posicion en x de la bala
+	 * @param j, posicion en y de la bala
+	 * @param direccion, indica si la bala va hacia arriba 'u' o hacia abajo 'd'
+	 */
 	public Normal(int i, int j, char direccion) {
 		super(i, j, direccion);
 	}
@@ -14,6 +27,10 @@ public class Normal extends Bala{
 		return '|';
 	}
 
+	/**
+	 * Permite el movimiento de la bala.
+	 * @param app, clase principal de la aplicacion.
+	 */
 	@Override
 	public void move(SPOOBceInvaders app) {
 		if(dir == 'u') {

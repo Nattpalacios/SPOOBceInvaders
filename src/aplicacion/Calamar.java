@@ -3,9 +3,9 @@ package aplicacion;
 import java.util.Random;
 
 /**
- * Clase que contiene toda la informacion del invasor de tipo calamar
+ * Clase que contiene toda la informacion del invasor de tipo calamar.
  * @author (Palacios)
- * @version (29/11/2018)
+ * @version (9/12/2018)
  */
 public class Calamar extends Extraterrestre{
 	
@@ -33,7 +33,10 @@ public class Calamar extends Extraterrestre{
 	}
 
 	
-
+	/**
+	 * Hace que el invasor se mueva.
+	 * @param app, clase principal de la aplicacion.
+	 */
 	@Override
 	public void move(SPOOBceInvaders app) {
 		if(vivo) {

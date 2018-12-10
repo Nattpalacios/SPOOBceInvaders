@@ -198,13 +198,13 @@ public class SPOOBceInvaders {
 	
 	private int[] posicionesBarreras(int cantidad) {
 		if(cantidad == 1) {
-			int[] barre = {21,38};
+			int[] barre = {21,39};
 			return barre;
 		}else if(cantidad == 2) {
-			int[] barre = {21,22,21,53};
+			int[] barre = {21,23,21,54};
 			return barre;
 		}else if(cantidad == 3) {
-			int[] barre = {21,14,21,37,21,60};
+			int[] barre = {21,16,21,39,21,62};
 			return barre;
 		}else if(cantidad == 4) {
 			int[] barre = {21,7,21,28,21,49,21,70};

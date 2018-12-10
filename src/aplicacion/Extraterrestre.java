@@ -3,6 +3,11 @@ package aplicacion;
 import java.util.*;
 import java.math.*;
 
+/**
+ * Clase que contiene toda la informacion del invasor.
+ * @author (Palacios)
+ * @version (9/12/2018)
+ */
 public abstract class Extraterrestre implements Impactable, Movible, Dispara{
 	
 	protected int[][] posiciones;
@@ -14,6 +19,11 @@ public abstract class Extraterrestre implements Impactable, Movible, Dispara{
 	protected ArrayList<Bala> municiones;
 	protected int estado;
 	
+	/**
+	 * Constructor de un invasor.
+	 * @param i, primera posicion en x del invasor en la matriz.
+	 * @param j, primera posicion en y del invasor en la matriz.
+	 */
 	public Extraterrestre(int i, int j) {
 		estado = 1;
 		municiones = new ArrayList<Bala>();
@@ -23,6 +33,11 @@ public abstract class Extraterrestre implements Impactable, Movible, Dispara{
 		asignePosiciones(i, j);
 	}
 	
+	/**
+	 * Asigna las posiciones al invasor en la matriz.
+	 * @param i, posicion inicial en x del invasor.
+	 * @param j, posicion inicial en y del invasor.
+	 */
 	public void asignePosiciones(int i, int j) {
 		int[] pos = new int[2];
 		pos[0] = i; pos[1] = j; posiciones[0] = Arrays.copyOfRange(pos, 0, 2);
@@ -35,12 +50,25 @@ public abstract class Extraterrestre implements Impactable, Movible, Dispara{
 		pos[1] = j+3; posiciones[7] = Arrays.copyOfRange(pos, 0, 2);
 	}
 	
+	/**
+	 * Indica el identificador del invasor en la matriz
+	 * @return el identificador
+	 */
 	public abstract char getIdentificador();
 	
+	/**
+	 * Retorna las posiciones que esta ocupando el invasor en la matriz.
+	 * @return posiciones del invasor.
+	 */
 	public int[][] getPos(){
 		return posiciones;
 	}
 	
+	/**
+	 * Permite al invasor disparar.
+	 * @param posX, posicion x del disparo.
+	 * @param posY, posicion y del disparo.
+	 */
 	@Override
 	public void disparar(int posX, int posY) {
 		if(vivo) {
@@ -58,6 +86,9 @@ public abstract class Extraterrestre implements Impactable, Movible, Dispara{
 		}
 	}	
 	
+	/**
+	 * Crea la bala y da la orden del ataque.
+	 */
 	protected void dispare() {
 		Random r = new Random();
 		int suma = r.nextInt(4);
@@ -65,9 +96,14 @@ public abstract class Extraterrestre implements Impactable, Movible, Dispara{
 		int posY = y + suma;
 		Bala b = new Normal(posX, posY, 'd');
 		municiones.add(b);
-		
 	}
 
+	/**
+	 * Indica si el invasor esta en la posicion del impacto.
+	 * @param i, posicion x del disparo.
+	 * @param j, posicion y del disparo.
+	 * @param d, direccion en que va la bala.
+	 */
 	public boolean estoy(int i, int j, char d) {
 		boolean flag = false;
 		if(vivo) {
@@ -80,6 +116,12 @@ public abstract class Extraterrestre implements Impactable, Movible, Dispara{
 		return flag;
 	}
 	
+	/**
+	 * Indica si el invasor fue impactado por una bala.
+	 * @param x, posicion x del impacto.
+	 * @param y, posicion y del impacto.
+	 * @param d, direccion en que va la bala.
+	 */
 	@Override
 	public int impacto(int x, int y, char d) {
 		if(estoy(x,y,d) && d == 'u') {
@@ -93,25 +135,44 @@ public abstract class Extraterrestre implements Impactable, Movible, Dispara{
 		}else {
 			return 0;
 		}
-		
 	}
 	
+	/**
+	 * Indica si el invasor aun existe.
+	 * @return si esta vivo.
+	 */
 	public boolean isVivo() {
 		return vivo;
 	}
 	
+	/**
+	 * Indica cuantas vidas tiene el invasor.
+	 * @return la cantidad de vidas.
+	 */
 	public int getVida() {
 		return vida;
 	}
 	
+	/**
+	 * Retorna el ultimo disparo del invasor.
+	 * @return la ultima bala.
+	 */
 	public Bala getUltimoDisparo() {
 		return municiones.get(municiones.size()-1);
 	}
 
+	/**
+	 * Retorna todas las balas que han sido disparadas por el invasor.
+	 * @return las balas del invasor.
+	 */
 	public ArrayList<Bala> getBalas() {
 		return municiones;
 	}
 
+	/**
+	 * Indica la posicion actual de invasor.
+	 * @return posicion x & y.
+	 */
 	public int[] getPosIni() {
 		int[] pos = new int[2];
 		pos[1] = x;
@@ -119,10 +180,18 @@ public abstract class Extraterrestre implements Impactable, Movible, Dispara{
 		return pos;
 	}
 
+	/**
+	 * Indica el estado del invasor.
+	 * @return estado.
+	 */
 	public int getEstado() {
 		return estado;
 	}
 
+	/**
+	 * Retorna una lista con los tipos de balas que se han disparado.
+	 * @return los tipos de balas.
+	 */
 	public ArrayList<Character> getBal() {
 		ArrayList<Character> bal = new ArrayList<Character>();
 		for(int i = 0; i < municiones.size(); i++) {
@@ -133,6 +202,10 @@ public abstract class Extraterrestre implements Impactable, Movible, Dispara{
 		return bal;
 	}
 
+	/**
+	 * Retorna las posiciones de las balas que se han disparado.
+	 * @return posiciones de las balas.
+	 */
 	public ArrayList<Integer[]> getBalPos() {
 		ArrayList<Integer[]> bal = new ArrayList<Integer[]>();
 		for(int i = 0; i < municiones.size(); i++) {

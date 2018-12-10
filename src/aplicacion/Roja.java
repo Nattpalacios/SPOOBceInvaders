@@ -1,12 +1,30 @@
 package aplicacion;
 
+/**
+ * Clase que contiene toda la informacion de las barreras rojas.
+ * Esta barrera puede ser destruida por los canones.
+ * @author (Palacios)
+ * @version (9/12/2018)
+ */
+
 public class Roja extends Barrera{
 	
+	/**
+	 * Constructor de la barrera
+	 * @param i, primera posicion en x de la barrera
+	 * @param j, primera posicion en y de la barrera
+	 */
 	public Roja(int i, int j) {
 		super(i, j);
 		vida = 1;
 	}
 
+	/**
+	 * Indica si las balas impactaron a la barrera.
+	 * @param x, posicion x del impacto.
+	 * @param y, posicion y del impacto.
+	 * @param d, direccion en que va la bala.
+	 */
 	@Override
 	public int impacto(int x, int y, char d) {
 		int impacto = 0;
@@ -24,6 +42,12 @@ public class Roja extends Barrera{
 		return impacto;
 	}
 
+	/**
+	 * Indica si la barrera esta en el lugar del impacto.
+	 * @param i, posicion x del impacto.
+	 * @param j, posicion y del impacto.
+	 * @param d, direccion en que va la bala.
+	 */
 	@Override
 	public boolean estoy(int i, int j, char d) {
 		boolean flag = false;
@@ -38,6 +62,10 @@ public class Roja extends Barrera{
 		return flag;
 	}
 
+	/**
+	 * Retorna el identificador de la barrera en la matriz.
+	 * @return el identificador.
+	 */
 	@Override
 	public char getIdentificador() {
 		return 'r';

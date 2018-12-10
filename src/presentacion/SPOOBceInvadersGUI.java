@@ -12,6 +12,8 @@ import java.net.URL;
 import javax.swing.event.*;
 
 /**
+ * Clase principal de presentacion.
+ * Esta clase se comunica con la clase principal de aplicacion.
  * @version (9/12/2018)
  * @author (Natalia Palacios)
  */
@@ -39,7 +41,9 @@ public class SPOOBceInvadersGUI extends JFrame{
 	}
 	
 	/**
-	 * Activa el modo Un Jugador
+	 * Activa el modo Un Jugador.
+	 * @param col, color del jugador.
+	 * @param tablero, archivo a interpretar.
 	 * @throws IOException 
 	 */
 	public void empieceUnJugador(Color col,File tablero) throws IOException {
@@ -55,6 +59,9 @@ public class SPOOBceInvadersGUI extends JFrame{
 	
 	/**
 	 * Activa el modo Multijugador de jugador vs jugador
+	 * @param col, color del jugador 1.
+	 * @param col2, color del jugador 2.
+	 * @param tablero, archivo a interpretar.
 	 * @throws IOException 
 	 */
 	public void empieceMultijugadorJJ(Color col,Color col2,File tablero) throws IOException {
@@ -70,6 +77,10 @@ public class SPOOBceInvadersGUI extends JFrame{
 	
 	/**
 	 * Activa el modo Multijugador de jugador vs maquina
+	 * @param col, color del jugador 1.
+	 * @param col2, color del jugador 2.
+	 * @param tablero, archivo a interpretar.
+	 * @param modo, modo de la maquina.
 	 * @throws IOException 
 	 */
 	public void empieceMultijugadorJM(Color col,Color col2,File tablero,char modo) throws IOException {
@@ -83,6 +94,9 @@ public class SPOOBceInvadersGUI extends JFrame{
 		iniciarJuego();
 	}
 	
+	/**
+	 * Prepara el tablero de juego.
+	 */
 	private void prepareTablero() {
 		pantalla = Toolkit.getDefaultToolkit().getScreenSize();
 		tablero = new JPanel();
@@ -96,6 +110,9 @@ public class SPOOBceInvadersGUI extends JFrame{
 		canvas.add(tablero);
 	}
 
+	/**
+	 * Inicia el juego.
+	 */
 	private void iniciarJuego() {
 		tiempoJuego = new Timer();
 		TimerTask task = new TimerTask() {
@@ -111,6 +128,9 @@ public class SPOOBceInvadersGUI extends JFrame{
 		tiempoJuego.schedule(task,1,100);
 	}
 
+	/**
+	 * Manda los elementos del tablero a la clase Printer para dibujarlos.
+	 */
 	private void muestreTablero() {
 		ArrayList<CanonGUI> canones = new ArrayList<CanonGUI>();
 		ArrayList<BarreraGUI> barreras = new ArrayList<BarreraGUI>();

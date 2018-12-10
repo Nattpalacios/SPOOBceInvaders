@@ -7,6 +7,12 @@ import java.awt.event.*;
 import java.net.URL;
 import javax.swing.event.*;
 
+/**
+ * Esta clase permite mostrar las opciones del menu principal.
+ * @author Palacios
+ * @version (9/12/2018)
+ */
+
 public class MenuPrincipal extends JDialog{
 	
 	private Container contentPane;

@@ -5,6 +5,12 @@ import java.net.URL;
 import java.util.*;
 import javax.swing.*;
 
+/**
+ * Esta clase permite dibujar en el tablero de juego.
+ * @version (9/12/2018)
+ * @author Palacios
+ */
+
 public class Printer extends Component{
 	private ArrayList<BarreraGUI> barreras;
 	private ArrayList<ExtraterrestreGUI> invasores;
@@ -15,7 +21,8 @@ public class Printer extends Component{
 	private JPanel tablero;
 	
 	/**
-	 * 
+	 * Constructor de la clase.
+	 * @param tablero, tablero del juego.
 	 */
 	public Printer(JPanel tablero) {
 		this.tablero = tablero;
@@ -81,24 +88,36 @@ public class Printer extends Component{
 		}
 	}
 
+	/**
+	 * Agrega los canones creados en aplicacion, para dibujarlos.
+	 * @param canones, canones de la aplicacion.
+	 */
 	public void agregarCanones(ArrayList<CanonGUI> canones) {
 		this.canones = canones;
-		
 	}
 
+	/**
+	 * Agrega las barreras creadas en aplicacion, para dibujarlas.
+	 * @param barreras, barreras de la aplicacion.
+	 */
 	public void agregarBarreras(ArrayList<BarreraGUI> barreras) {
 		this.barreras = barreras;
-		
 	}
 
+	/**
+	 * Agrega los invasores creados en aplicacion, para dibujarlos.
+	 * @param invasores, invasores de la aplicacion.
+	 */
 	public void agregarInvasores(ArrayList<ExtraterrestreGUI> invasores) {
 		this.invasores = invasores;
-		
 	}
 
+	/**
+	 * Agrega las balas creadas en aplicacion, para dibujarlas.
+	 * @param balas, balas de la aplicacion.
+	 */
 	public void agregarBalas(ArrayList<BalaGUI> balas) {
 		this.balas = balas;
-		
 	}
 	
 }

@@ -3,14 +3,29 @@ package presentacion;
 import java.util.*;
 import java.io.*;
 
+/**
+ * Esta clase permite hacer la persistencia del juego.
+ * @author Palacios
+ * @version (9/12/2018)
+ */
+
 public class Persistencia {
 	
 	private String rutaTablero;
 	
+	/**
+	 * Constructor
+	 */
 	public Persistencia() {
 		rutaTablero = "tableros";
 	}
 	
+	/**
+	 * Permite interpretar el archivo de texto.
+	 * @param tablero, archivo a interpretar.
+	 * @return los elementos que se van a anadir al tablero.
+	 * @throws IOException
+	 */
 	public ArrayList<ArrayList<Character>> interpretaTablero(File tablero) throws IOException {
 		ArrayList<ArrayList<Character>> a = new ArrayList<ArrayList<Character>>();
 		if(tablero != null) {			

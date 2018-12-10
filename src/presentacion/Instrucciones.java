@@ -7,6 +7,12 @@ import java.awt.event.*;
 import java.net.URL;
 import javax.swing.event.*;
 
+/**
+ * Esta clase permite mostrar las instrucciones del juego.
+ * @author Palacios
+ * @version (9/12/2018)
+ */
+
 public class Instrucciones extends JDialog{
 	
 	private Container contentPane;
@@ -20,8 +26,8 @@ public class Instrucciones extends JDialog{
 	private Image fondo = new ImageIcon(fondoo).getImage();
 	
 	/**
-	 * Inicia la ventana del menu inicial.
-	 * @param gui. Tablero de juego.
+	 * Inicia la ventana de las instrucciones.
+	 * @param menu, menu principal..
 	 */
 	public Instrucciones(MenuPrincipal menu) {
 		menuP = menu;
@@ -33,7 +39,7 @@ public class Instrucciones extends JDialog{
 	}
 
 	/**
-	 * Prepara los elementos necesarios para mostrar el menu.
+	 * Prepara los elementos necesarios para mostrar la ventana de instrucciones.
 	 */
 	private void prepareElementos() {
 		setTitle("Instrucciones");
@@ -44,7 +50,7 @@ public class Instrucciones extends JDialog{
 	
 	
 	/**
-	 * Prepara y ajusta los botones a mostrar en el menu principal.
+	 * Prepara y ajusta los botones a mostrar en la ventana de instrucciones.
 	 */
 	private void prepareElementosMenu() {
 		botones = new JPanel() {
@@ -72,7 +78,7 @@ public class Instrucciones extends JDialog{
 	}
 
 	/**
-	 * Ajusta el tamano y la ubicacion de los botones del menu.
+	 * Ajusta el tamano y la ubicacion de los botones de instrucciones.
 	 */
 	private void tamanoBotones() {
 		int y = this.getHeight();
@@ -83,7 +89,7 @@ public class Instrucciones extends JDialog{
 	}
 
 	/**
-	 * Ajusta el tamano de la ventana del menu principal.
+	 * Ajusta el tamano de la ventana de instrucciones.
 	 */
 	private void tamanoMenu() {
 		int y = pantalla.height;
@@ -93,7 +99,7 @@ public class Instrucciones extends JDialog{
 	}
 	
 	/**
-	 * Arregla los botones del menu.
+	 * Arregla los botones.
 	 */
 	private void diseno() {
 		bordes();
@@ -102,7 +108,7 @@ public class Instrucciones extends JDialog{
 	}
 	
 	/**
-	 * Ajusta la animaciones de los botones del menu.
+	 * Ajusta la animaciones de los botones.
 	 */
 	private void bordes() {
 		volver.setBorder(null);
@@ -110,7 +116,7 @@ public class Instrucciones extends JDialog{
 	}
 	
 	/**
-	 * Asigna el color a los botones del menu
+	 * Asigna el color a los botones.
 	 */
 	private void colorcitoBoton() {
 		volver.setBackground(colorBoton);
@@ -127,7 +133,7 @@ public class Instrucciones extends JDialog{
 	}
 	
 	/**
-	 * Asigna las funcionalidades a los botones del menu.
+	 * Asigna las funcionalidades a los botones.
 	 */
 	private void prepareAcciones() {
 		WindowAdapter cerrarVentana = new WindowAdapter() {
@@ -148,22 +154,20 @@ public class Instrucciones extends JDialog{
 		volver.addActionListener(botonVolver);
 	}
 	
+	/**
+	 * Permite volver al menu principal.
+	 */
 	private void volver() {
 		menuP.setVisible(true);
 		this.setVisible(false);
 	}
 	
 	/**
-	 * Cierra el juego en caso de que el usuario lo indique.
+	 * Cierra la ventana en caso de que el usuario lo indique.
 	 */
 	private void salir() {
-		int respuesta = JOptionPane.showConfirmDialog(this, "Are you sure?", "Exit", JOptionPane.YES_NO_OPTION);
-		if(respuesta == JOptionPane.YES_OPTION) {
-			menuP.setVisible(true);
-			this.setVisible(false);
-		}else {
-			setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-		}
+		menuP.setVisible(true);
+		this.setVisible(false);
 	}
 
 }

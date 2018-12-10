@@ -8,8 +8,9 @@ import java.net.URL;
 import javax.swing.event.*;
 
 /**
+ * Esta clase permite mostrar las opciones del menu multijugador.
  * @version (9/12/2018)
- * @author (Natalia Palacios)
+ * @author Palacios
  */
 
 public class Multijugador extends JDialog{
@@ -29,8 +30,9 @@ public class Multijugador extends JDialog{
 	private Detalle detalle;
 	
 	/**
-	 * Inicia la ventana del menu inicial.
+	 * Inicia la ventana del menu de multijugador.
 	 * @param gui. Tablero de juego.
+	 * @param jug. Menu de jugar.
 	 */
 	public Multijugador(Jugar jug, SPOOBceInvadersGUI gui) {
 		principal = gui;
@@ -54,7 +56,7 @@ public class Multijugador extends JDialog{
 	
 	
 	/**
-	 * Prepara y ajusta los botones a mostrar en el menu principal.
+	 * Prepara y ajusta los botones a mostrar en el menu.
 	 */
 	private void prepareElementosMenu() {
 		botones = new JPanel() {
@@ -103,7 +105,7 @@ public class Multijugador extends JDialog{
 	}
 
 	/**
-	 * Ajusta el tamano de la ventana del menu principal.
+	 * Ajusta el tamano de la ventana del menu.
 	 */
 	private void tamanoMenu() {
 		int y = pantalla.height;
@@ -192,30 +194,31 @@ public class Multijugador extends JDialog{
 	}
 	
 	/**
-	 * Abre una ventana con las instrucciones
+	 * Abre una ventana con otras opciones.
 	 */
 	private void jugador() {
 		detalle = new Detalle(juego,'m',principal);
-		//principal.empieceMultijugadorJJ();
 		this.setVisible(false);
 	}
 	
 	/**
-	 * Abre una ventanas con otras opciones.
+	 * Abre una ventana con otras opciones.
 	 */
 	private void maquina() {
 		detalle = new Detalle(juego,'m',principal);
-		//principal.empieceMultijugadorJM();
 		this.setVisible(false);
 	}
 	
+	/**
+	 * Permite volver al menu de juego.
+	 */
 	private void volver() {
 		juego.setVisible(true);
 		this.setVisible(false);
 	}
 	
 	/**
-	 * Cierra el juego en caso de que el usuario lo indique.
+	 * Cierra la ventana en caso de que el usuario lo indique.
 	 */
 	private void salir() {
 		juego.setVisible(true);

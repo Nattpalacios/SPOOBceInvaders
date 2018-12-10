@@ -4,6 +4,12 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Clase que contiene toda la informacion del canon.
+ * @author (Palacios)
+ * @version (9/12/2018)
+ */
+
 public class Canon implements Impactable, Movible, Dispara{
 	
 	private int[][] posiciones;
@@ -14,6 +20,11 @@ public class Canon implements Impactable, Movible, Dispara{
 	private boolean vivo;
 	private Color color;
 	
+	/**
+	 * Constructor de un canon.
+	 * @param i, primera posicion en x del canon en la matriz.
+	 * @param j, primera posicion en y del canon en la matriz.
+	 */
 	public Canon(int i, int j) {
 		vivo = true;
 		vida = 3;
@@ -23,6 +34,11 @@ public class Canon implements Impactable, Movible, Dispara{
 		asignePosiciones(x, y);
 	}
 	
+	/**
+	 * Asigna las posiciones que va a ocupar el canon en la matriz
+	 * @param i, primera posicion en x
+	 * @param j, primera posicion en y
+	 */
 	protected void asignePosiciones(int i, int j) {
 		int[] pos = new int[2];
 		pos[0] = i; pos[1] = j; posiciones[0] = Arrays.copyOfRange(pos, 0, 2);
@@ -38,14 +54,25 @@ public class Canon implements Impactable, Movible, Dispara{
 		
 	}
 
+	/**
+	 * Indica el identificador del canon en la matriz.
+	 * @return el identificador.
+	 */
 	public char getIdentificador() {
 		return 'j';
 	}
 	
+	/**
+	 * Indica las posiciones que ocupa el canon en la matriz.
+	 * @return la matriz con las posiciones.
+	 */
 	public int[][] getPos(){
 		return posiciones;
 	}
 	
+	/**
+	 * Permite que el canon se mueva hacia la izquierda.
+	 */
 	public void izquierda() {
 		if(vivo) {
 			if(y-3 >= 0) {
@@ -55,6 +82,9 @@ public class Canon implements Impactable, Movible, Dispara{
 		}
 	}
 
+	/**
+	 * Permite que el canon se mueva hacia la derecha.
+	 */
 	public void derecha() {
 		if(vivo) {
 			if(y+5 <= 83) {
@@ -64,6 +94,11 @@ public class Canon implements Impactable, Movible, Dispara{
 		}
 	}
 
+	/**
+	 * Permite que el canon dispare en una posicion especifica.
+	 * @param posX, posicion en x del disparo.
+	 * @param posY, posicion en y del disparo.
+	 */
 	@Override
 	public void disparar(int posX, int posY) {
 		if(vivo) {
@@ -72,30 +107,60 @@ public class Canon implements Impactable, Movible, Dispara{
 		}
 	}
 	
+	/**
+	 * Indica la posicion x del canon en la matriz.
+	 * @return posicion x.
+	 */
 	public int getPosX() {
 		return x;
 	}
 	
+	/**
+	 * Indica la posicion y del canon en la matriz.
+	 * @return posicion y.
+	 */
 	public int getPosY() {
 		return y;
 	}
 
+	/**
+	 * Retorna la ultima bala que fue disparada, con toda su informacion.
+	 * @return el ultimo disparo.
+	 */
 	public Bala getUltimoDisparo() {
 		return municiones.get(municiones.size()-1);
 	}
 	
+	/**
+	 * Retorna todos los disparos que se han hecho.
+	 * @return todos los disparos.
+	 */
 	public ArrayList<Bala> getBalas(){
 		return municiones;
 	}
 	
+	/**
+	 * Indica si el canon aun esta vivo.
+	 * @return si esta vivo.
+	 */
 	public boolean isVivo() {
 		return vivo;
 	}
 
+	/**
+	 * Hace que el canon se mueva.
+	 * @param app, clase principal de la aplicacion.
+	 */
 	@Override
 	public void move(SPOOBceInvaders app) {		
 	}
 
+	/**
+	 * Indica si el canon esta en el lugar del impacto de la bala.
+	 * @param i, posicion en x del impacto.
+	 * @param j, posicion en y del impacto.
+	 * @param d, direccion en que va la bala.
+	 */
 	public boolean estoy(int i, int j, char d) {
 		boolean flag = false;
 		if(vivo) {
@@ -108,6 +173,12 @@ public class Canon implements Impactable, Movible, Dispara{
 		return flag;
 	}
 
+	/**
+	 * Indica si la bala impacto al canon.
+	 * @param x, posicion en x del impacto.
+	 * @param y, posicion en y del impacto.
+	 * @param d, direccion en que va la bala.
+	 */
 	@Override
 	public int impacto(int x, int y, char d) {
 		if(estoy(x,y,d) && d == 'd') {
@@ -123,10 +194,18 @@ public class Canon implements Impactable, Movible, Dispara{
 		}
 	}
 
+	/**
+	 * Indica la cantidad de vidas que tienen el canon.
+	 * @return cantidad de vidas.
+	 */
 	public int getVida() {
 		return vida;
 	}
 
+	/**
+	 * Indica el puntaje que lleva el jugador.
+	 * @return puntaje del jugador.
+	 */
 	public int getPuntaje() {
 		int pun = 0;
 		for(int i = 0; i < municiones.size(); i++) {
@@ -138,6 +217,10 @@ public class Canon implements Impactable, Movible, Dispara{
 		return pun;
 	}
 
+	/**
+	 * Retorna una lista con los tipos de balas que se han disparado.
+	 * @return los tipos de balas.
+	 */
 	public ArrayList<Character> getBal() {
 		ArrayList<Character> bal = new ArrayList<Character>();
 		for(int i = 0; i < municiones.size(); i++) {
@@ -148,6 +231,10 @@ public class Canon implements Impactable, Movible, Dispara{
 		return bal;
 	}
 	
+	/**
+	 * Retorna las posiciones de las balas que se han disparado.
+	 * @return posiciones de las balas.
+	 */
 	public ArrayList<Integer[]> getBalPos() {
 		ArrayList<Integer[]> bal = new ArrayList<Integer[]>();
 		for(int i = 0; i < municiones.size(); i++) {
@@ -161,11 +248,19 @@ public class Canon implements Impactable, Movible, Dispara{
 		return bal;
 	}
 
+	/**
+	 * Cambia el color del canon.
+	 * @param col, nuevo color.
+	 */
 	public void setColor(Color col) {
 		this.color = col;
 		
 	}
 
+	/**
+	 * Obtiene el color del canon.
+	 * @return color del canon.
+	 */
 	public Color getColor() {
 		return color;
 	}

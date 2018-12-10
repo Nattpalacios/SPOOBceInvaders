@@ -10,8 +10,9 @@ import javax.swing.*;
 import javax.swing.plaf.FileChooserUI;
 
 /**
+ * Detalles del tablero de juego.
  * @version (9/12/2018)
- * @author (Natalia Palacios)
+ * @author Palacios
  */
 
 public class Detalle extends JDialog{
@@ -33,6 +34,12 @@ public class Detalle extends JDialog{
 	private char tipo;
 	private SPOOBceInvadersGUI principal;
 
+	/**
+	 * Constructor de la clase.
+	 * @param jugar, menu de Juego.
+	 * @param tipo, tipo de juego.
+	 * @param gui, clase principal.
+	 */
 	public Detalle(Jugar jugar, char tipo,SPOOBceInvadersGUI gui) {
 		principal = gui;
 		this.tipo = tipo;
@@ -56,7 +63,7 @@ public class Detalle extends JDialog{
 	}
 	
 	/**
-	 * Prepara y ajusta los botones a mostrar en el menu principal.
+	 * Prepara y ajusta los botones a mostrar en el menu de detalle.
 	 */
 	private void prepareElementosMenu() {
 		panel = new JPanel() {@Override
@@ -261,6 +268,10 @@ public class Detalle extends JDialog{
 		personalizado.addActionListener(personalizad);
 	}
 	
+	/**
+	 * Permite preparar el tablero personalizado.
+	 * @throws IOException
+	 */
 	protected void personal() throws IOException {
 		File f = null;
 		JFileChooser j = new JFileChooser();
@@ -276,10 +287,12 @@ public class Detalle extends JDialog{
 				principal.empieceMultijugadorJJ(col1, col2, f);
 			}
 		}
-		
-		
 	}
 
+	/**
+	 * Permite preparar el tablero por defecto.
+	 * @throws IOException
+	 */
 	protected void defecto() throws IOException {
 		File f = new File("src/tableros/defecto.txt");
 		if(tipo == 'u') {
@@ -292,6 +305,9 @@ public class Detalle extends JDialog{
 		
 	}
 
+	/**
+	 * Cambia el color del primer jugador.
+	 */
 	private void cambieColor1() {
 		Color coloor = JColorChooser.showDialog(null, "Change color", col1);
 		if(coloor != null && coloor != Color.BLACK) {
@@ -300,6 +316,9 @@ public class Detalle extends JDialog{
 		}
 	}
 	
+	/**
+	 * Cambia el color del segundo jugador.
+	 */
 	private void cambieColor2() {
 		Color coloor = JColorChooser.showDialog(null, "Change color", col1);
 		if(coloor != null && coloor != Color.GRAY) {
@@ -309,7 +328,7 @@ public class Detalle extends JDialog{
 	}
 	
 	/**
-	 * Cierra el juego en caso de que el usuario lo indique.
+	 * Cierra la ventana en caso de que el usuario lo indique.
 	 */
 	private void salir() {
 		jugar.setVisible(true);

@@ -49,7 +49,7 @@ public class SPOOBceInvaders {
 		c.setColor(col);
 		canones.add(c);
 		limpiarTablero();
-		crearElementos(); //arreglar
+		crearElementos(tablero); //arreglar
 		actualiceInvasores();
 		actualiceBarreras();
 		actualiceCanones();
@@ -79,7 +79,7 @@ public class SPOOBceInvaders {
 		canones.add(c);
 		canones.add(c2);
 		limpiarTablero();
-		crearElementos();//arreglar
+		crearElementos(tablero);//arreglar
 		actualiceInvasores();
 		actualiceBarreras();
 		actualiceCanones();
@@ -166,8 +166,9 @@ public class SPOOBceInvaders {
 		}
 	}
 	
-	public void crearElementos() {
+	public void crearElementos(ArrayList<ArrayList<Character>> tablero) {
 		int[] barre = {21,7,21,28,21,49,21,70};
+		//int[] barre = posicionesBarreras(tablero.get(1).size());
 		int[] calamar = {5,10,5,16,5,22,5,28,5,34,5,40,5,46,5,52,5,58,5,64,5,70};	
 		int[] cangrejo = {8,10,8,16,8,22,8,28,8,34,8,40,8,46,8,52,8,58,8,64,8,70};
 		int[] pulpo = {11,10,11,16,11,22,11,28,11,34,11,40,11,46,11,52,11,58,11,64,11,70};
@@ -179,6 +180,10 @@ public class SPOOBceInvaders {
 			extraterrestres.add(new Cangrejo(cangrejo[i],cangrejo[i+1]));
 			extraterrestres.add(new Pulpo(pulpo[i],pulpo[i+1]));
 		}
+	}
+	
+	private int[] posicionesBarreras(int cantidad) {
+		
 	}
 	
 	/**

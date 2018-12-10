@@ -195,7 +195,7 @@ public class Multijugador extends JDialog{
 	 * Abre una ventana con las instrucciones
 	 */
 	private void jugador() {
-		detalle = new Detalle(juego,'m');
+		detalle = new Detalle(juego,'m',principal);
 		//principal.empieceMultijugadorJJ();
 		this.setVisible(false);
 	}
@@ -204,7 +204,7 @@ public class Multijugador extends JDialog{
 	 * Abre una ventanas con otras opciones.
 	 */
 	private void maquina() {
-		detalle = new Detalle(juego,'m');
+		detalle = new Detalle(juego,'m',principal);
 		//principal.empieceMultijugadorJM();
 		this.setVisible(false);
 	}

@@ -27,7 +27,7 @@ public abstract class Extraterrestre implements Impactable, Movible, Dispara{
 	 */
 	public Extraterrestre(int i, int j) {
 		estado = 1;
-		direccion = 1;
+		direccion = 1;// 1 -> izq | 0 -> der | 2 -> aba | 3 -> arr		
 		municiones = new ArrayList<Bala>();
 		vivo = true;
 		x = i; y = j;
@@ -221,4 +221,36 @@ public abstract class Extraterrestre implements Impactable, Movible, Dispara{
 		return bal;
 	}
 	
+	/**
+	 * 
+	 * @return un booleano indicando si el extraterrestre se puede mover a la izquierda
+	 */
+	public boolean puedeI() {
+		boolean flag = false;
+		if(y - 1 >= 0) {
+			flag = true;
+		}
+		return flag;
+	}
+	
+	/**
+	 * 
+	 * @return un booleano indicando si el extraterrestre se puede mover a la derecha
+	 */
+	public boolean puedeD() {
+		boolean flag = false;
+		if(y + 3 < 83) {
+			flag = true;
+		}
+		return flag;
+	}
+
+	public void choque() {
+		direccion = 2;		
+	}
+
+	public void noChoque(int direccion2) {
+		direccion = direccion2;
+		
+	}
 }

@@ -45,9 +45,20 @@ public class Calamar extends Extraterrestre{
 			}else {
 				estado = 1;
 			}
+			if(direccion == 1) {
+				y--;
+				asignePosiciones(x, y);
+			}else if(direccion == 0){
+				y++;
+				asignePosiciones(x, y);
+			}else if(direccion == 2){
+				x++;
+				asignePosiciones(x, y);
+			}else {
+				x--;
+				asignePosiciones(x, y);
+			}
 		}
-		
-		
 	}
 
 	

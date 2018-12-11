@@ -12,6 +12,7 @@ import java.util.*;
 public class SPOOBceInvaders {
 	
 	private ArrayList<Barrera> escudos;
+	private int direccion;
 	private int filas;
 	private ArrayList<ArrayList<Extraterrestre>> extraterrestres;
 	private ArrayList<Canon> canones;
@@ -21,7 +22,8 @@ public class SPOOBceInvaders {
 	/**
 	 * Constructor de la clase
 	 */
-	public SPOOBceInvaders() {		
+	public SPOOBceInvaders() {	
+		direccion = 1;
 		tablero = new char[30][84];
 		tableroInicial();
 	}
@@ -303,7 +305,9 @@ public class SPOOBceInvaders {
 					}				
 				}
 			}				
-		}		
+		}
+		
+		moverExtraterrestres();
 		limpiarTablero();
 		actualiceBarreras();
 		actualiceBalas();
@@ -311,6 +315,62 @@ public class SPOOBceInvaders {
 		actualiceCanones();
 		
 		return tablero;
+	}
+
+	private void moverExtraterrestres() {
+		Extraterrestre lider = null;
+		if(direccion == 1) {
+			for(int i = 0; i < 11 && lider == null; i++) {
+				for(int j = 0; j < filas && lider == null; j++) {
+					Extraterrestre e = extraterrestres.get(j).get(i);
+					if(e.isVivo() && !e.puedeI()) {
+						lider = e;
+					}
+				}
+			}
+		}else {
+			for(int i = 10; i > -1 && lider == null; i--) {
+				for(int j = 0; j < filas && lider == null; j++) {
+					Extraterrestre e = extraterrestres.get(j).get(i);
+					if(e.isVivo() && !e.puedeD()) {
+						lider = e;
+					}
+				}
+			}
+		}
+		if(lider != null) {
+			direccion = Math.abs(direccion - 1);
+			for(int i = 10; i > -1; i--) {
+				for(int j = 0; j < filas; j++) {
+					Extraterrestre e = extraterrestres.get(j).get(i);
+					e.choque();
+				}
+			}
+		}else {
+			for(int i = 10; i > -1; i--) {
+				for(int j = 0; j < filas; j++) {
+					Extraterrestre e = extraterrestres.get(j).get(i);
+					e.noChoque(direccion);
+				}
+			}
+		}
+		if(direccion == 1) {
+			for(int i = 0; i < 11; i++) {
+				for(int j = filas - 1; j > -1; j--) {
+					Extraterrestre e = extraterrestres.get(j).get(i);
+					e.move(this);
+				}
+			}
+		}else {
+			for(int i = 10; i > -1; i--) {
+				for(int j = filas - 1; j > -1; j--) {
+					Extraterrestre e = extraterrestres.get(j).get(i);
+					e.move(this);
+				}
+			}
+		}
+		
+		
 	}
 
 	/**

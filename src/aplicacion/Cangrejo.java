@@ -42,6 +42,10 @@ public class Cangrejo extends Extraterrestre{
 				}else {
 					estado = 1;
 				}
+				if(app.movermeAbajo(x,y)) {
+					x++;
+					asignePosiciones(x, y);
+				}
 				if(direccion == 1) {
 					y--;
 					asignePosiciones(x, y);

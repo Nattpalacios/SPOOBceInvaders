@@ -58,6 +58,10 @@ public class Pulpo extends Extraterrestre{
 						asignePosiciones(x, y);
 					}	
 				}
+				if(app.movermeArriba(x,y)) {
+					x--;
+					asignePosiciones(x, y);
+				}
 				restante = 0;
 			}
 		}else {

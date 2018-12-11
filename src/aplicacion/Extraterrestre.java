@@ -12,9 +12,12 @@ public abstract class Extraterrestre implements Impactable, Movible, Dispara{
 	
 	protected int[][] posiciones;
 	protected int direccion;
+	protected int rate;
 	protected int x;
 	protected int y;
 	protected boolean vivo;
+	protected int velocidad;
+	protected int restante;
 	protected int vida;
 	protected int score;
 	protected ArrayList<Bala> municiones;
@@ -26,6 +29,9 @@ public abstract class Extraterrestre implements Impactable, Movible, Dispara{
 	 * @param j, primera posicion en y del invasor en la matriz.
 	 */
 	public Extraterrestre(int i, int j) {
+		rate = 3;
+		velocidad = 5;
+		restante = 0;
 		estado = 1;
 		direccion = 1;// 1 -> izq | 0 -> der | 2 -> aba | 3 -> arr		
 		municiones = new ArrayList<Bala>();
@@ -77,7 +83,7 @@ public abstract class Extraterrestre implements Impactable, Movible, Dispara{
 			Random r = new Random();
 			boolean prob;
 			int val = Math.abs(r.nextInt(1000));		
-			if(val <= 5) {
+			if(val <= rate) {
 				prob = true;
 			}else {
 				prob = false;
@@ -250,7 +256,6 @@ public abstract class Extraterrestre implements Impactable, Movible, Dispara{
 	}
 
 	public void noChoque(int direccion2) {
-		direccion = direccion2;
-		
+		direccion = direccion2;		
 	}
 }

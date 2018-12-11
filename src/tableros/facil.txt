@@ -1,5 +1,5 @@
 Lineas de Invasores: 2
-Pulpo
+Cangrejo
 Calamar
 Numero de Barreras: 1
 Roja

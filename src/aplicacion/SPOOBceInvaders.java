@@ -12,6 +12,7 @@ import java.util.*;
 public class SPOOBceInvaders {
 	
 	private ArrayList<Barrera> escudos;
+	private char mode;
 	private int direccion;
 	private int filas;
 	private ArrayList<ArrayList<Extraterrestre>> extraterrestres;
@@ -46,6 +47,7 @@ public class SPOOBceInvaders {
 	 */
 	public void iniciarJuego(Color col, ArrayList<ArrayList<Character>> tablero) {
 		escudos = new ArrayList<Barrera>();
+		mode = 'u';
 		extraterrestres = new ArrayList<ArrayList<Extraterrestre>>();
 		filas = tablero.get(0).size();
 		canones = new ArrayList<Canon>();
@@ -66,6 +68,7 @@ public class SPOOBceInvaders {
 	 */
 	public void iniciarJuego(char modo,Color col,Color col2,ArrayList<ArrayList<Character>> tablero) {
 		escudos = new ArrayList<Barrera>();
+		modo = mode;
 		extraterrestres = new ArrayList<ArrayList<Extraterrestre>>();
 		canones = new ArrayList<Canon>();
 		filas = tablero.get(0).size();
@@ -307,10 +310,10 @@ public class SPOOBceInvaders {
 			}				
 		}
 		
-		moverExtraterrestres();
 		limpiarTablero();
 		actualiceBarreras();
 		actualiceBalas();
+		moverExtraterrestres();
 		actualiceInvasores();
 		actualiceCanones();
 		
@@ -537,6 +540,68 @@ public class SPOOBceInvaders {
 			}
 		}
 		return viv;
+	}
+
+	public boolean movermeArriba(int x, int y) {
+		boolean flag = false;
+		int fil = 0;
+		int col = 0;
+		for(int i = 0; i < filas && !flag; i++) {
+			for(int j = 0; j < 11 && !flag; j++) {
+				Extraterrestre e = extraterrestres.get(i).get(j);
+				int[] posicion = e.getPosIni();
+				if(posicion[1] == x && posicion[0] == y) {
+					fil = i;
+					col = j;
+					flag = true;
+				}
+			}
+		}
+		if(fil != 0) {
+			Extraterrestre ex = extraterrestres.get(fil-1).get(col);
+			if(!ex.isVivo()) {
+				Extraterrestre e = extraterrestres.get(fil).get(col);
+				extraterrestres.get(fil-1).set(col, e);
+				extraterrestres.get(fil).set(col, ex);
+				return true;
+			}else {
+				return false;
+			}	
+		}else {
+			return false;
+		}
+			
+	}
+	
+	public boolean movermeAbajo(int x, int y) {
+		boolean flag = false;
+		int fil = 0;
+		int col = 0;
+		for(int i = 0; i < filas && !flag; i++) {
+			for(int j = 0; j < 11 && !flag; j++) {
+				Extraterrestre e = extraterrestres.get(i).get(j);
+				int[] posicion = e.getPosIni();
+				if(posicion[1] == x && posicion[0] == y) {
+					fil = i;
+					col = j;
+					flag = true;
+				}
+			}
+		}
+		if(fil != filas-1) {
+			Extraterrestre ex = extraterrestres.get(fil+1).get(col);
+			if(!ex.isVivo()) {
+				Extraterrestre e = extraterrestres.get(fil).get(col);
+				extraterrestres.get(fil+1).set(col, e);
+				extraterrestres.get(fil).set(col, ex);
+				return true;
+			}else {
+				return false;
+			}	
+		}else {
+			return false;
+		}
+			
 	}
 	
 }

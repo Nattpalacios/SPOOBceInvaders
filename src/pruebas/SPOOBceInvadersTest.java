@@ -1,6 +1,8 @@
 package pruebas;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.awt.Color;
 import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 import aplicacion.*;
@@ -184,11 +186,26 @@ class SPOOBceInvadersTest {
 		assertTrue(balita.getPosY() == 36);
 	}
 	
-	/**@Test
+	@Test
 	void noDeberiaCrearseMasDeUnCanonEnModoUnJugador() {
 		SPOOBceInvaders sp = new SPOOBceInvaders();
-		sp.iniciarJuego('u');
+		ArrayList<ArrayList<Character>> tablero = new ArrayList<ArrayList<Character>>();
+		ArrayList<Character> tablerito1 = new ArrayList<Character>();
+		ArrayList<Character> tablerito2 = new ArrayList<Character>();
+		tablerito1.add('c');
+		tablerito1.add('p');
+		tablerito1.add('k');
+		tablerito1.add('p');
+		tablerito1.add('c');
+		tablerito2.add('r');
+		tablerito2.add('v');
+		tablerito2.add('v');
+		tablerito2.add('r');
+		tablero.add(tablerito1);
+		tablero.add(tablerito2);
+		sp.iniciarJuego(Color.BLACK,tablero);
 		ArrayList<Integer> tam2 = sp.getTamanos();
+		System.out.println(tam2);
 		assertTrue(tam2.get(0) == 1);
 		assertFalse(tam2.get(0) > 1);
 	}
@@ -196,7 +213,21 @@ class SPOOBceInvadersTest {
 	@Test
 	void deberianCrearseDosCanonesEnModoMultijugador() {
 		SPOOBceInvaders sp = new SPOOBceInvaders();
-		sp.iniciarJuego('m');
+		ArrayList<ArrayList<Character>> tablero = new ArrayList<ArrayList<Character>>();
+		ArrayList<Character> tablerito1 = new ArrayList<Character>();
+		ArrayList<Character> tablerito2 = new ArrayList<Character>();
+		tablerito1.add('c');
+		tablerito1.add('p');
+		tablerito1.add('k');
+		tablerito1.add('p');
+		tablerito1.add('c');
+		tablerito2.add('r');
+		tablerito2.add('v');
+		tablerito2.add('v');
+		tablerito2.add('r');
+		tablero.add(tablerito1);
+		tablero.add(tablerito2);
+		sp.iniciarJuego('m',Color.BLACK,Color.BLACK,tablero);
 		ArrayList<Integer> tam = sp.getTamanos();
 		assertTrue(tam.get(0) == 2);
 		assertFalse(tam.get(0) < 2);
@@ -205,24 +236,38 @@ class SPOOBceInvadersTest {
 	@Test
 	void noDeberianCrearseMasDeDosCanonesEnModoMultijugador() {
 		SPOOBceInvaders sp = new SPOOBceInvaders();
-		sp.iniciarJuego('m');
+		ArrayList<ArrayList<Character>> tablero = new ArrayList<ArrayList<Character>>();
+		ArrayList<Character> tablerito1 = new ArrayList<Character>();
+		ArrayList<Character> tablerito2 = new ArrayList<Character>();
+		tablerito1.add('c');
+		tablerito1.add('p');
+		tablerito1.add('k');
+		tablerito1.add('p');
+		tablerito1.add('c');
+		tablerito2.add('r');
+		tablerito2.add('v');
+		tablerito2.add('v');
+		tablerito2.add('r');
+		tablero.add(tablerito1);
+		tablero.add(tablerito2);
+		sp.iniciarJuego('m',Color.BLACK,Color.BLACK,tablero);
 		ArrayList<Integer> tam = sp.getTamanos();
 		assertFalse(tam.get(0) > 2);
 		assertTrue(tam.get(0) == 2);
-	}*/
-	
-	/**@Test
-	void deberiaMorirUnInvasorPulpoLuegoDeUnDisparo() {
-		SPOOBceInvaders sp = new SPOOBceInvaders();
-		sp.iniciarJuego('u');
-		Extraterrestre pulpo = new Pulpo(15, 35);
-		jugador.disparar(20, 36);
-		sp.actualice();
-	}*/
+	}
 	
 	@Test
+	void deberiaMorirUnInvasorPulpoLuegoDeUnDisparo() {
+		SPOOBceInvaders sp = new SPOOBceInvaders();
+		Extraterrestre pulpo = new Pulpo(15, 35);
+		sp.actualice();
+	}
+	
+	/**@Test
 	void deberiaMorirUnInvasorCangrejoLuegoDeDosDisparos() {
 		
-	}
+	}*/
+	
+	
 
 }

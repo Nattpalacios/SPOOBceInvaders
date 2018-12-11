@@ -12,7 +12,8 @@ import java.util.*;
 public class SPOOBceInvaders {
 	
 	private ArrayList<Barrera> escudos;
-	private ArrayList<Extraterrestre> extraterrestres;
+	private int filas;
+	private ArrayList<ArrayList<Extraterrestre>> extraterrestres;
 	private ArrayList<Canon> canones;
 	private char[][] tablero;
 	private char[][] tableroVacio;
@@ -43,13 +44,14 @@ public class SPOOBceInvaders {
 	 */
 	public void iniciarJuego(Color col, ArrayList<ArrayList<Character>> tablero) {
 		escudos = new ArrayList<Barrera>();
-		extraterrestres = new ArrayList<Extraterrestre>();
+		extraterrestres = new ArrayList<ArrayList<Extraterrestre>>();
+		filas = tablero.get(0).size();
 		canones = new ArrayList<Canon>();
 		Canon c = new Canon(27,41);
 		c.setColor(col);
 		canones.add(c);
 		limpiarTablero();
-		crearElementos(tablero); //arreglar
+		crearElementos(tablero);
 		actualiceInvasores();
 		actualiceBarreras();
 		actualiceCanones();
@@ -62,8 +64,9 @@ public class SPOOBceInvaders {
 	 */
 	public void iniciarJuego(char modo,Color col,Color col2,ArrayList<ArrayList<Character>> tablero) {
 		escudos = new ArrayList<Barrera>();
-		extraterrestres = new ArrayList<Extraterrestre>();
+		extraterrestres = new ArrayList<ArrayList<Extraterrestre>>();
 		canones = new ArrayList<Canon>();
+		filas = tablero.get(0).size();
 		/*if(modo == 'm') {
 			Canon c = new Canon(27,55);
 			c.setColor(col);
@@ -90,11 +93,16 @@ public class SPOOBceInvaders {
 	 * Pinta los invasores en la matriz
 	 */
 	private void actualiceInvasores() {
-		for(int i = 0; i < extraterrestres.size(); i++) {
-			char id = extraterrestres.get(i).getIdentificador();
-			int[][] pos = extraterrestres.get(i).getPos();
-			for(int j = 0; j < pos.length; j++) {
-				tablero[pos[j][0]][pos[j][1]] = id;
+		for(int i = 0; i < filas; i++) {
+			for(int j = 0; j < 11; j++) {
+				Extraterrestre e = extraterrestres.get(i).get(j);
+				if(e.isVivo()) {
+					char id = e.getIdentificador();
+					int[][] pos = e.getPos();
+					for(int k = 0; k < pos.length; k++) {
+						tablero[pos[k][0]][pos[k][1]] = id;
+					}
+				}
 			}
 		}
 	}
@@ -143,16 +151,21 @@ public class SPOOBceInvaders {
 				
 			}
 		}
-		for(int i = 0; i < extraterrestres.size(); i++) {
-			ArrayList<Bala> balas = extraterrestres.get(i).getBalas();
-			for(int j = 0; j < balas.size(); j++) {
-				if(balas.get(j).getScore() == 0) {
-					char id = balas.get(j).getIdentificador();
-					int posx = balas.get(j).getPosX();
-					int posy = balas.get(j).getPosY();
-					tablero[posx][posy]	= id;
+		for(int i = 0; i < filas; i++) {
+			for(int j = 0; j < 11; j++) {
+				Extraterrestre e = extraterrestres.get(i).get(j);
+				if(e.isVivo()) {
+					ArrayList<Bala> balas = e.getBalas();
+					for(int k = 0; k < balas.size(); k++) {
+						Bala b = balas.get(k);
+						if(b.getScore() == 0) {
+							char id = b.getIdentificador();
+							int posx = b.getPosX();
+							int posy =b.getPosY();
+							tablero[posx][posy]	= id;
+						}
+					}						
 				}
-				
 			}
 		}
 	}
@@ -180,19 +193,20 @@ public class SPOOBceInvaders {
 			}
 			cont++;
 		}
-		for(int i = 0; i < tablero.get(0).size(); i+=1) {
+		for(int i = 0; i < filas; i++) {
+			ArrayList<Extraterrestre> arreglo = new ArrayList<Extraterrestre>();
 			for(int j = 0; j < 21; j+=2) {
 				if(tablero.get(0).get(i) == 'c') {
-					extraterrestres.add(new Calamar(inicial[j]+(3*i),inicial[j+1]));
+					arreglo.add(new Calamar(inicial[j]+(3*i),inicial[j+1]));
 				}else if(tablero.get(0).get(i) == 'k'){
-					extraterrestres.add(new Cangrejo(inicial[j]+(3*i),inicial[j+1]));
+					arreglo.add(new Cangrejo(inicial[j]+(3*i),inicial[j+1]));
 				}else if(tablero.get(0).get(i) == 'p') {
-					extraterrestres.add(new Pulpo(inicial[j]+(3*i),inicial[j+1]));
+					arreglo.add(new Pulpo(inicial[j]+(3*i),inicial[j+1]));
 				}else {
-					extraterrestres.add(new Platillo(inicial[j]+(3*i),inicial[j+1]));
-				}
-				
+					arreglo.add(new Platillo(inicial[j]+(3*i),inicial[j+1]));
+				}				
 			}
+			extraterrestres.add(arreglo);
 		}
 	}
 	
@@ -265,8 +279,11 @@ public class SPOOBceInvaders {
 	 * @return el tablero
 	 */
 	public char[][] actualice() {
-		for(int i = 0; i < extraterrestres.size();i++ ) {
-			extraterrestres.get(i).disparar(0, 0);
+		for(int i = 0; i < filas;i++ ) {
+			for(int j = 0; j < 11;j++ ) {
+				Extraterrestre e = extraterrestres.get(i).get(j);
+				e.disparar(0, 0);
+			}			
 		}		
 		for(int i = 0; i < canones.size(); i++) {
 			ArrayList<Bala> balas = canones.get(i).getBalas();
@@ -276,14 +293,17 @@ public class SPOOBceInvaders {
 				}				
 			}
 		}
-		for(int i = 0; i < extraterrestres.size(); i++) {
-			ArrayList<Bala> balas = extraterrestres.get(i).getBalas();
-			for(int j = 0; j < balas.size(); j++) {
-				if(balas.get(j).getScore() == 0) {
-					balas.get(j).move(this);
-				}				
-			}
-		}
+		for(int i = 0; i < filas; i++) {
+			for(int j = 0; j < 11; j++) {
+				Extraterrestre e = extraterrestres.get(i).get(j);
+				ArrayList<Bala> balas = e.getBalas();
+				for(int k = 0; k < balas.size(); k++) {
+					if(balas.get(k).getScore() == 0) {
+						balas.get(k).move(this);
+					}				
+				}
+			}				
+		}		
 		limpiarTablero();
 		actualiceBarreras();
 		actualiceBalas();
@@ -303,11 +323,13 @@ public class SPOOBceInvaders {
 	public int impacto(int posX, int posY, char d) {
 		int score = 0;
 		int ext=-1;int bar=-1;int can=-1;
-		for(int i = 0; i < extraterrestres.size() && score == 0; i++) {
-			Extraterrestre e = extraterrestres.get(i);
-			score = e.impacto(posX, posY,d);
-			if(!e.isVivo()) {
-				ext=i;
+		for(int i = 0; i < filas && score == 0; i++) {
+			for(int j = 0; j < 11 && score == 0; j++) {
+				Extraterrestre e = extraterrestres.get(i).get(j);
+				score = e.impacto(posX, posY,d);
+				if(!e.isVivo()) {
+					ext=i;
+				}
 			}
 		}
 		for(int i = 0; i < escudos.size() && score == 0; i++) {
@@ -334,7 +356,7 @@ public class SPOOBceInvaders {
 		ArrayList<Integer> tamanos = new ArrayList<Integer>();
 		tamanos.add(canones.size());
 		tamanos.add(escudos.size());
-		tamanos.add(extraterrestres.size());
+		tamanos.add(filas*11);
 		return tamanos;
 	}
 
@@ -365,16 +387,46 @@ public class SPOOBceInvaders {
 		return escudos.get(i).getIdentificador();
 	}
 
-	public int[] getPosicionInvasor(int i) {
-		return extraterrestres.get(i).getPosIni();
+	public int[] getPosicionInvasor(int n) {
+		int x = 0;
+		int[] pos = new int[2];
+		for(int i = 0; i < filas && x <= n; i++) {
+			for(int j = 0; j < 11 && x <= n; j++) {
+				if(x == n) {
+					pos=extraterrestres.get(i).get(j).getPosIni();
+				}
+				x++;
+			}
+		}
+		return pos;
 	}
 
-	public int getEstadoInvasor(int i) {
-		return extraterrestres.get(i).getEstado();
+	public int getEstadoInvasor(int n) {
+		int x = 0;
+		int est = -1;
+		for(int i = 0; i < filas && x <= n; i++) {
+			for(int j = 0; j < 11 && x <= n; j++) {
+				if(x == n) {
+					est=extraterrestres.get(i).get(j).getEstado();
+				}
+				x++;
+			}
+		}
+		return est;
 	}
 
-	public char getIdInvasor(int i) {
-		return extraterrestres.get(i).getIdentificador();
+	public char getIdInvasor(int n) {
+		int x = 0;
+		char id = ' ';
+		for(int i = 0; i < filas && x <= n; i++) {
+			for(int j = 0; j < 11 && x <= n; j++) {
+				if(x == n) {
+					id=extraterrestres.get(i).get(j).getIdentificador();
+				}
+				x++;
+			}
+		}
+		return id;
 	}
 	
 	public ArrayList<Character> getBalasCanon(int i) {
@@ -385,16 +437,46 @@ public class SPOOBceInvaders {
 		return canones.get(i).getBalPos();
 	}
 	
-	public ArrayList<Character> getBalasInvasor(int i) {
-		return extraterrestres.get(i).getBal();
+	public ArrayList<Character> getBalasInvasor(int n) {
+		int x = 0;
+		ArrayList<Character> bal = null;
+		for(int i = 0; i < filas && x <= n; i++) {
+			for(int j = 0; j < 11 && x <= n; j++) {
+				if(x == n) {
+					bal=extraterrestres.get(i).get(j).getBal();
+				}
+				x++;
+			}
+		}
+		return bal;
 	}
 	
-	public ArrayList<Integer[]> getBalasInvasorPos(int i){
-		return extraterrestres.get(i).getBalPos();
+	public ArrayList<Integer[]> getBalasInvasorPos(int n){
+		int x = 0;
+		ArrayList<Integer[]> bal = null;
+		for(int i = 0; i < filas && x <= n; i++) {
+			for(int j = 0; j < 11 && x <= n; j++) {
+				if(x == n) {
+					bal=extraterrestres.get(i).get(j).getBalPos();
+				}
+				x++;
+			}
+		}
+		return bal;
 	}
 	
-	public boolean invasorIsVivo(int i) {
-		return extraterrestres.get(i).isVivo();
+	public boolean invasorIsVivo(int n) {
+		int x = 0;
+		boolean viv = false;
+		for(int i = 0; i < filas && x <= n; i++) {
+			for(int j = 0; j < 11 && x <= n; j++) {
+				if(x == n) {
+					viv=extraterrestres.get(i).get(j).isVivo();
+				}
+				x++;
+			}
+		}
+		return viv;
 	}
 	
 }

@@ -11,6 +11,7 @@ import java.math.*;
 public abstract class Extraterrestre implements Impactable, Movible, Dispara{
 	
 	protected int[][] posiciones;
+	protected int direccion;
 	protected int x;
 	protected int y;
 	protected boolean vivo;
@@ -26,6 +27,7 @@ public abstract class Extraterrestre implements Impactable, Movible, Dispara{
 	 */
 	public Extraterrestre(int i, int j) {
 		estado = 1;
+		direccion = 1;
 		municiones = new ArrayList<Bala>();
 		vivo = true;
 		x = i; y = j;

@@ -12,6 +12,7 @@ import javax.swing.*;
  */
 
 public class Printer extends Component{
+	
 	private ArrayList<BarreraGUI> barreras;
 	private ArrayList<ExtraterrestreGUI> invasores;
 	private ArrayList<CanonGUI> canones;

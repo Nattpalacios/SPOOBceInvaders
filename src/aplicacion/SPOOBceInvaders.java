@@ -325,9 +325,7 @@ public class SPOOBceInvaders {
 				can=i;
 			}
 		}
-		//if(ext!=-1) {extraterrestres.remove(ext);}
 		if(bar!=-1) {escudos.remove(bar);}
-		//if(can!=-1) {canones.remove(can);}
 		
 		return score;
 	}
@@ -337,7 +335,6 @@ public class SPOOBceInvaders {
 		tamanos.add(canones.size());
 		tamanos.add(escudos.size());
 		tamanos.add(extraterrestres.size());
-		//tamanos.add(balinas)
 		return tamanos;
 	}
 

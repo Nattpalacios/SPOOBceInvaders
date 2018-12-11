@@ -240,7 +240,6 @@ public class Detalle extends JDialog{
 				try {
 					defecto();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				
@@ -252,7 +251,6 @@ public class Detalle extends JDialog{
 				try {
 					personal();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				
